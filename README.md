@@ -20,9 +20,9 @@
 
 ![2a](images/2a.png)
 
-### (c)
+### (b)
 
-![2c](images/2c.png)
+![2b](images/2b.png)
 
 ## Question 3
 ### (a)
