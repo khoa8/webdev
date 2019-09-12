@@ -7,11 +7,13 @@
 ## Question 1 
 ### (a)
 
-![1a](images/1a.png)
-
 ### (b)
 
-![1b](images/1b.png)
+### (c)
+
+![1c1](images/1c1.png)
+
+![1c2](images/1c2.png)
 
 ## Question 2
 ### (a-b)
