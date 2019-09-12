@@ -2,7 +2,7 @@
 
 **NetID**: sq9943
 
-# Homework #1 Solutions
+# Homework #2 Solutions
 
 ## Question 1 
 ### (a)
