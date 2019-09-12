@@ -26,7 +26,8 @@ main {
   margin-left: auto;
   margin-right: auto;
   background-color: gray;
-  margin: 50px 50px 50px 50px;
+  max-width: 700px;
+
 }
 
 body {
