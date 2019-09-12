@@ -27,6 +27,15 @@
 ## Question 3
 ### (a)
 
+![3a](images/3a.png)
+
+```javascript
+array=document.querySelectorAll('.publication')
+for (i=0;i<array.length;i++) {
+	array[i].innerHTML = '<strong style=\'color:blue;\'>' +(i+1)+ ' (sq9943). </strong>' +array[i].innerText;
+}
+```
+
 ### (b)
 
 ## Question 4
@@ -51,17 +60,7 @@
 ## Question 5
 ### (a) **Code sample**
 
-```c++
-#include <iostream> //sample code in c++
-using namespace std;
-int main(){
-   for(int i=1; i<=6; i++){
-      cout<<"i = "<<i<<endl;
-   }
-   cout<<"End of sample.\n";
-   return 0;
-}
-```
+
 
 ### (b) **Links**
 
