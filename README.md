@@ -16,9 +16,9 @@
 ![1c2](images/1c2.png)
 
 ## Question 2
-### (a-b)
+### (a)
 
-![2ab](images/2ab.png)
+![2a](images/2a.png)
 
 ### (c)
 
