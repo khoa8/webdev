@@ -30,13 +30,25 @@
 ![3a](images/3a.png)
 
 ```javascript
-array=document.querySelectorAll('.publication')
+array=document.querySelectorAll('.publication');
 for (var i=0;i<array.length;i++) {
 	array[i].innerHTML = '<strong style=\'color:blue;\'>' +(i+1)+ ' (sq9943). </strong>' +array[i].innerText;
 }
 ```
 
 ### (b)
+```javascript
+array=document.querySelectorAll('.patent');
+var array2 = [];
+var o = {};
+for (i=0;i<array.length;i++) {
+o.patNum = document.getElementsByClassName('PatNum')[0].innerText;
+o.title = document.getElementsByClassName('Title')[0].innerText;
+o.date = document.getElementsByClassName('Date')[0].innerText;
+array2[i] = o;
+}
+array2;  <!-- call array2 to copy array of objects to the patentInfo.js -->
+```
 
 ## Question 4
 ### (a)
