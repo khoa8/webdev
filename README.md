@@ -31,7 +31,7 @@
 
 ```javascript
 array=document.querySelectorAll('.publication')
-for (i=0;i<array.length;i++) {
+for (var i=0;i<array.length;i++) {
 	array[i].innerHTML = '<strong style=\'color:blue;\'>' +(i+1)+ ' (sq9943). </strong>' +array[i].innerText;
 }
 ```
