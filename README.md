@@ -40,11 +40,11 @@ for (var i=0;i<array.length;i++) {
 ```javascript
 array=document.querySelectorAll('.patent');
 var array2 = [];
-var o = {};
-for (i=0;i<array.length;i++) {
-o.patNum = document.getElementsByClassName('PatNum')[0].innerText;
-o.title = document.getElementsByClassName('Title')[0].innerText;
-o.date = document.getElementsByClassName('Date')[0].innerText;
+for(var i=0;i<array.length;i++){
+let o = {};
+o.Patent_Number = document.getElementsByClassName('PatNum')[i].innerText;
+o.Title = document.getElementsByClassName('Title')[i].innerText;
+o.Date = document.getElementsByClassName('Date')[i].innerText;
 array2[i] = o;
 }
 array2;  <!-- call array2 to copy array of objects to the patentInfo.js -->
@@ -60,7 +60,7 @@ array2;  <!-- call array2 to copy array of objects to the patentInfo.js -->
 
 ### (b)
 
-![5btest](images/5btest.png)
+![5b](images/5b.png)
 
 ```javascript
 
@@ -97,7 +97,7 @@ function generateTable(table, data) {
 }
 
 let table = document.querySelector("table");
-let data = Object.keys(patentInfo[0]);
-generateTable(table, patentInfo);
+let data = Object.keys(patInfo[0]);
+generateTable(table, pat5bInfo);
 generateTableHead(table, data);
 ```
