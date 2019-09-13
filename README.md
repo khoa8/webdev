@@ -98,6 +98,6 @@ function generateTable(table, data) {
 
 let table = document.querySelector("table");
 let data = Object.keys(patInfo[0]);
-generateTable(table, pat5bInfo);
+generateTable(table, patInfo);
 generateTableHead(table, data);
 ```
