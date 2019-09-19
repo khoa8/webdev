@@ -372,44 +372,6 @@ div {
 
 ### (b)
 
-![5b](images/5b.png)
+[Drawing App](http://csweb01.csueastbay.edu/~sq9943/randomDrawing.html).
 
-```javascript
-
-<!-- this is just a hard code for testing the function with out file patentInfo.js
-let patentInfo = [
-  { PatentNumber: 1, Date: "September", Title: "ABC" },
-  { PatentNumber: 2, Date: "September", Title: "ABC" },
-  { PatentNumber: 3, Date: "September", Title: "ABC" },
-  { PatentNumber: 4, Date: "September", Title: "ABC" },
-  { PatentNumber: 5, Date: "September", Title: "ABC" }
-];
--->
-
-function generateTableHead(table, data) {
-  let thead = table.createTHead();
-  let row = thead.insertRow();
-  for (let key of data) {
-    let th = document.createElement("th");
-    let text = document.createTextNode(key);
-    th.appendChild(text);
-    row.appendChild(th);
-  }
-}
-
-function generateTable(table, data) {
-  for (let element of data) {
-    let row = table.insertRow();
-    for (key in element) {
-      let cell = row.insertCell();
-      let text = document.createTextNode(element[key]);
-      cell.appendChild(text);
-    }
-  }
-}
-
-let table = document.querySelector("table");
-let data = Object.keys(patInfo[0]);
-generateTable(table, patInfo);
-generateTableHead(table, data);
-```
+[Tour Site](http://csweb01.csueastbay.edu/~sq9943/hw2.html).
