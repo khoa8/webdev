@@ -103,11 +103,21 @@ window.onload = function() {
 ![1c](images/1c.png)
 
 
-
 ## Question 2
 ### (a)
+```javascript
+while(myElement.firstChild){myElement.removeChild(myElement.firstChild);}
+```
+While the element still has a child ("myElement.firstChild"), this command will continue to loop and remove the first child of it. Using while loop will avoid the null if the node does not exist which means all the children of this element have been removed. Also we can use childNodes[0] will produce the same result as firstChild.
 
-![2a](images/2a.png)
+```javascript
+function clear(){
+const myElement = document.getElementById("MyDrawing");
+while(myElement.firstChild){myElement.removeChild(myElement.firstChild);}
+}
+
+document.getElementById("b3").addEventListener("click",clear);
+```
 
 ### (b)
 

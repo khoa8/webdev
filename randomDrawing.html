@@ -9,16 +9,29 @@
 <body>
     <h1>Random Drawing Fun!</h1>
   <h2>Brought to you by sq9943</h2>
-  <form>
+ <form>
+ <fieldset id="cp">
+  <legend>Control Panel</legend>
+  <section id="sec1">
   <label for="drawcir">Number of Circles:</label>
   <input type="number" id="drawcir" name="drawcir" placeholder="from 1 to 20" min="1" max="20" autocomplete="off">
   <input type="button" class="button" id="b1" value="Add Circle(s)">
+  </section>
 
+  <section id="sec2">
   <label for="drawsqu">Number of Squares:</label>
   <input type="number" id="drawsqu" name="drawsqu" placeholder="from 1 to 20" min="1" max="20" autocomplete="off">
   <input type="button" class="button" id="b2" value="Add Square(s)">
+  </section>
+
+  <section id="sec3">
+  <label for="opac">Shape Opacity:</label>
+  <input type="number" id="opac" name="opac" placeholder="0.0 to 1.0; default is 1.0" step="0.1" min="0.0" max="1.0" autocomplete="off">
+  <input type="button" class="button1" id="b3" value="CLEAR">
+  </section>
+</fieldset>
 </form>
-    <svg id="MyDrawing" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+    <svg id="MyDrawing" width="645" height="300" xmlns="http://www.w3.org/2000/svg">
     </svg>
 
 </body>
