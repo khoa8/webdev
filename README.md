@@ -121,7 +121,39 @@ document.getElementById("b3").addEventListener("click",clear);
 
 ### (b)
 
-![2b](images/2b.png)
+#### Added HTML
+```html
+<label for="opac">Shape Opacity:</label>
+<input type="number" id="opac" name="opac" placeholder="0.0 to 1.0; default is 1.0" step="0.1" min="0.0" max="1.0" autocomplete="off">
+```
+
+#### JavaScript initialization additions
+```javascript
+function draw_cir(){
+
+let opa = document.getElementById("opac").value;
+...
+...
+text = "<circle cx='"+ x +"' cy='" + y + "' r='" + size + "' fill='#" + fill + "' fill-opacity='" + opa + "'/>";
+```
+```javascript
+function draw_squ(){
+...
+...
+  let opa = document.getElementById("opac").value;
+...
+...
+  square.setAttribute("fill-opacity", opa);
+```
+
+#### Event handler code
+```javascript
+window.onload = function() {
+  document.getElementById("b1").addEventListener("click",draw_cir);
+  document.getElementById("b2").addEventListener("click",draw_squ);
+  document.getElementById("b3").addEventListener("click",clear);
+}
+```
 
 ## Question 3
 ### (a)
