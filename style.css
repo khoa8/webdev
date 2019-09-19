@@ -1,0 +1,55 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+main {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: gray;
+  max-width: 700px;
+
+}
+
+body {
+  background-color: lightblue;
+}
+
+div {
+  padding: 15px 15px;
+}
+#f1 {
+  display: grid;
+  text-align: right;
+  grid-template-columns: 10em 20em;
+  padding: 1em;
+  grid-row-gap:1em;
+  grid-column-gap: 1em;
+  margin: 0.5em;
+  border: solid #55cedc;
+  border-radius: 15px;
+  max-width: 40em;
+}
+#b1{
+  background-color: gold;
+  cursor: pointer;
+}

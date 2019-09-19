@@ -229,26 +229,54 @@ body {
 ### (b)
 ![4b](images/4b.png)
 
-```javascript
-	var x = 0;
-	var y = 0;
-	var size = 0;
-	var fill = '000000';	
-	var temp = '';
-	var svg = '';
-	for( var i = 0 ; i < 70 ; i++ ){
-			x = Math.floor(Math.random() * (1400-100+1)+ 100);
-			y = Math.floor(Math.random() * (1400-100+1)+ 100);
-			size = Math.floor(Math.random() * (70-10+1)+ 10);
-			fill = Math.floor(Math.random()*16777215).toString(16);	
-			text = "<circle cx='"+ x +"' cy='" + y + "' r='" + size + "' fill='#" + fill + "'/>";
-			//text = "<circle cx='50' cy='50' r='50' fill='red'/>";
-			temp = temp  +  text;				
-	}
-	svg ="<svg id='svg' height='500' width='700'>" + temp + "</svg>";
-	document.getElementById("circle").innerHTML += svg;
+```html
+<body>
+    <nav>
+    	<span>KN Vietnam Travel</span>
+      <ul>
+        <li><a href="hw2.html" target="_blank">Home</a></li>
+        <li><a href="#">Current Tours</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="signup.html" target="_blank">Tour Signup</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+     </nav>
+    <main>
+      <div>
+    	<header>
+    		<h1>Newsletter Signup</h1>
+    	</header>
+    	<img src="images/tra-vinh-market.jpg" width="350" height="250">
+    </div>
+    <div>
+      <h2>Enter Your Information:</h2>
+      <section id="f1">
+  <label>First Name:</label> <input type="text" required>
+  <label>Last Name:</label> <input type="text" required>
+  <label>Email:</label><input type="text" required>
+  <label>How did you hear about us?(optional)</label><input type="text">
+  <label>Comments(optional)</label><textarea name="comments" rows="8" cols="20"></textarea>
+  <button id="b1">Sign me up!</button>
+</section>
 ```
-
+```css
+#f1 {
+  display: grid;
+  text-align: right;
+  grid-template-columns: 10em 20em;
+  padding: 1em;
+  grid-row-gap:1em;
+  grid-column-gap: 1em;
+  margin: 0.5em;
+  border: solid #55cedc;
+  border-radius: 15px;
+  max-width: 40em;
+}
+#b1{
+  background-color: gold;
+  cursor: pointer;
+}
+```
 ## Question 5
 ### (a) 
 
