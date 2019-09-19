@@ -158,27 +158,69 @@ window.onload = function() {
 ## Question 3
 ### (a)
 
-![3a](images/3a.png)
-
-```javascript
-array=document.querySelectorAll('.publication');
-for (var i=0;i<array.length;i++) {
-	array[i].innerHTML = '<strong style=\'color:blue;\'>' +(i+1)+ ' (sq9943). </strong>' +array[i].innerText;
-}
-```
-
 ### (b)
-```javascript
-array=document.querySelectorAll('.patent');
-var array2 = [];
-for(var i=0;i<array.length;i++){
-let o = {};
-o.Patent_Number = document.getElementsByClassName('PatNum')[i].innerText;
-o.Title = document.getElementsByClassName('Title')[i].innerText;
-o.Date = document.getElementsByClassName('Date')[i].innerText;
-array2[i] = o;
+
+### (c)
+![3](images/3.png)
+```css
+.button {
+  background-color: #add8e6;
+  color: black;
+  cursor: pointer;
+  
 }
-array2;  <!-- call array2 to copy array of objects to the patentInfo.js -->
+.button1 {
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+}
+
+#cp {
+  padding: 1em;
+  margin: auto;
+  border: solid #55cedc;
+  border-radius: 15px;
+}
+#cp section {
+  display: grid;
+  grid-template-columns: 10em 14em 10em;
+  padding: 1em;
+  grid-row-gap:1em;
+  grid-column-gap: 1em;
+  margin: auto;
+  border-radius: 15px;
+  max-width: 40em;
+}
+#cp label {
+  align-self: center;
+  text-align: right;
+  display: block;
+}
+
+form {
+  padding: 1em;
+  background: none;
+  border: none;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+}
+svg {
+  border: solid #000000;
+  max-width: 645px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-family: sans-serif;
+}
+
 ```
 
 ## Question 4
