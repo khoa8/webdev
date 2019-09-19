@@ -277,6 +277,96 @@ body {
   cursor: pointer;
 }
 ```
+
+### (c)
+![4c](images/4c.png)
+
+```html
+<nav id="bar">
+    	<span id="s1">KN Vietnam Travel</span>
+      <ul>
+        <li><a href="hw2.html" target="_blank">Home</a></li>
+        <li><a href="#">Current Tours</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="signup.html" target="_blank">Tour Signup</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+</nav>
+```
+
+```css
+li {
+  float: left;
+}
+
+li a {
+  
+  color: white;
+  padding: 5px 5px;
+  text-decoration: none;
+  border: solid white;
+  overflow: hidden;
+  background-color: black;
+
+}
+ul {
+list-style: none;
+}
+
+li a:hover {
+  background-color: gray;
+}
+
+main {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: gray;
+  max-width: 700px;
+
+}
+
+body {
+  background-color: lightblue;
+}
+
+div {
+  padding: 15px 15px;
+}
+
+
+#f1 {
+  display: grid;
+  text-align: right;
+  grid-template-columns: 10em 20em;
+  padding: 1em;
+  grid-row-gap:1em;
+  grid-column-gap: 1em;
+  margin: 0.5em;
+  border: solid #55cedc;
+  border-radius: 15px;
+  max-width: 40em;
+}
+#s1{
+  font-size: 20px;
+  font-family: serif; 
+}
+#b1{
+  background-color: gold;
+  cursor: pointer;
+}
+#bar {
+  display: flex;
+  justify-content:center;
+  position: fixed;
+  top: 0;
+  width: 100%; 
+  height: 5%;
+  background-color: gray;
+  max-width: 1200px;
+}
+```
+
 ## Question 5
 ### (a) 
 
