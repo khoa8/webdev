@@ -14,7 +14,7 @@ function draw_cir(){
       size = Math.floor(Math.random() * (40-10+1)+ 10);
       fill = Math.floor(Math.random()*16777215).toString(16); 
       text = "<circle cx='"+ x +"' cy='" + y + "' r='" + size + "' fill='#" + fill + "' fill-opacity='" + opa + "'/>";
-      //text = "<circle cx='50' cy='50' r='50' fill='red'/>";
+      //text = "<circle id='c11' cx='50' cy='50' r='50' fill='red'/>";
       temp = temp  +  text;       
   }
   //svg ="<svg id='svg' height='500' width='700'>" + temp + "</svg>";
@@ -48,10 +48,22 @@ const myElement = document.getElementById("MyDrawing");
 while(myElement.firstChild){myElement.removeChild(myElement.firstChild);}
 }
 
+function update(){ 
+var list1 = document.getElementsByTagName("circle");
+for (var i = 0; i < list1.length; i++) {
+  list1[i].setAttribute("fill-opacity", document.getElementById("opac").value);
+}
+var list2 = document.getElementsByTagName("rect");
+for (var i = 0; i < list2.length; i++) {
+  list2[i].setAttribute("fill-opacity", document.getElementById("opac").value);
+}
+}
+
 window.onload = function() {
   document.getElementById("b1").addEventListener("click",draw_cir);
   document.getElementById("b2").addEventListener("click",draw_squ);
   document.getElementById("b3").addEventListener("click",clear);
+  document.getElementById("opac").addEventListener("change",update);
 }
 
 
