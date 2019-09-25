@@ -15,6 +15,8 @@ I get v10.16.3 as my Node.js version, and 6.9.0 as my NPM version.
 
 ### (d)
 
+![1d](images/1d.png)
+
 ## Question 2
 ### (a)
 ```javascript
