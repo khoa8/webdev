@@ -142,8 +142,8 @@ ReactDOM.render(<section>
     </section>,
     document.getElementById("root")
 );
-```
-
+```
+
 ### (b)
 
 
