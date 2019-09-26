@@ -1,16 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import chemElements from "./elements.json";
+import PeriodicTable from "./periodic.js";
 
-// What is this? HTML mixed with JavaScript
-let head1 = <h1>The Periodic Table</h1>;
-let head2 = <h2>Brought to you by Khoa Nguyen sq9943</h2>;
-let intro = <p>There are {parseInt(chemElements.length)} chemical elements.</p>;
+let cols = ["atomic_number", "name", "symbol", "phase", "year_of_discovery"];
+let content = <div>
+    <h1>The Periodic Table </h1>
+    <h2> Brought to you by Your Name and YourNetId here</h2>
+    <PeriodicTable chemElements={chemElements} desiredCols={cols}/>
+    </div>;
 
-ReactDOM.render(<section>
-    {head1}
-    {head2}
-    {intro}
-    </section>,
-    document.getElementById("root")
-);
+ReactDOM.render(content, document.getElementById("root"));
+

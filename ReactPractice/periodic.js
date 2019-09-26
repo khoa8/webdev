@@ -1,16 +1,37 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import chemElements from "./elements.json";
 
-// What is this? HTML mixed with JavaScript
-let head1 = <h1>The Periodic Table</h1>;
-let head2 = <h2>Brought to you by Khoa Nguyen sq9943</h2>;
-let intro = <p>There are 118 chemical elements.</p>;
+function generateTableHead(table, data) {
+  	let thead = table.createTHead();
+  	let row = thead.insertRow();
+    for (let key of data) {
+    let th = document.createElement("th");
+    let text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+}
 
-ReactDOM.render(<section>
-    {head1}
-    {head2}
-    {intro}
-    </section>,
-    document.getElementById("root")
-);
+function generateTable(table, data) {
+  for (let element of data) {
+    let row = table.insertRow();
+    for (key in element) {
+      let cell = row.insertCell();
+      let text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+  }
+}
+
+function PeriodicTable(props) {
+let table = document.querySelector("table");
+let data = props.desiredCols;
+generateTable(table, props.chemElements);
+generateTableHead(table, data);
+
+return (
+	<table id="table">
+
+	</table>
+	);
+}
+
+export default PeriodicTable;
