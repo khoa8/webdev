@@ -26,73 +26,51 @@ I get v10.16.3 as my Node.js version, and 6.9.0 as my NPM version.
 
 ### (c)
 
+![2c](images/2c.png)
+
 ## Question 3
 ### (a)
 
 ### (b)
 
-### (c)
-![3](images/3.png)
-```css
-.button {
-  background-color: #add8e6;
-  color: black;
-  cursor: pointer;
-  
-}
-.button1 {
-  background-color: #f44336;
-  color: white;
-  cursor: pointer;
-}
+```html
+<body>
+    <h1>Markdown to HTML Converter</h1>
+  	<h2>Type Markdown here</h2>
 
-#cp {
-  padding: 1em;
-  margin: auto;
-  border: solid #55cedc;
-  border-radius: 15px;
-}
-#cp section {
-  display: grid;
-  grid-template-columns: 10em 14em 10em;
-  padding: 1em;
-  grid-row-gap:1em;
-  grid-column-gap: 1em;
-  margin: auto;
-  border-radius: 15px;
-  max-width: 40em;
-}
-#cp label {
-  align-self: center;
-  text-align: right;
-  display: block;
-}
+<div id="d1">
+	<textarea name="comments" id="input" rows="11" cols="80" wrap=on></textarea>
+	
+</div>
+	<button type="button" id="b1">Convert to HTML</button>
+	<h3>Rendered HTML</h3>
+<div id="d2">
+	
+</div>
 
-form {
-  padding: 1em;
-  background: none;
-  border: none;
-  margin-top: 2rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1em;
-}
-svg {
-  border: solid #000000;
-  max-width: 645px;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  font-family: sans-serif;
-}
 
+</body>
 ```
+
+```javascript
+import commonmark from "commonmark";
+
+function convert(){
+
+var reader = new commonmark.Parser();
+var writer = new commonmark.HtmlRenderer();
+var parsed = reader.parse(document.getElementById("input").value);
+var result = writer.render(parsed);
+
+document.getElementById("d2").innerHTML +=result;
+}
+
+window.onload = function() {
+  document.getElementById("b1").addEventListener("click",convert);
+}
+```
+
+![3b](images/3b.png)
 
 ## Question 4
 ### (a)

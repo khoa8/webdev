@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Random Drawing</title>
+    <title>Markdown to HTML</title>
     <script src="processMD.js"></script>
 <style>
 body {
@@ -16,10 +16,11 @@ body {
 }
 
 #d2 {
+	background-color: white;
 	border: solid #000000;
 	max-width: 800px;
-	margin-left: auto;
-	margin-right: auto;
+	height: 200px;
+  	width: 56%;
 	box-sizing: border-box;
 }
 body { 
@@ -28,6 +29,9 @@ body {
 	align-items: center;
 	justify-content: space-around;
 	font-family: sans-serif;
+}
+button {
+	cursor: pointer;
 }
 </style>
 </head>
@@ -39,10 +43,10 @@ body {
 	<textarea name="comments" id="input" rows="11" cols="80" wrap=on></textarea>
 	
 </div>
-	<button type="submit" form="input" value="Submit">Convert to HTML</button>
+	<button type="button" id="b1">Convert to HTML</button>
 	<h3>Rendered HTML</h3>
 <div id="d2">
-	<textarea id="output" rows=11 cols=80 wrap=on></textarea>
+	<!-- <textarea id="output" rows=11 cols=80 wrap=on></textarea> -->
 </div>
 
 
