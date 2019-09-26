@@ -75,57 +75,33 @@ window.onload = function() {
 ## Question 4
 ### (a)
 
-### (b)
-![4b](images/4b.png)
+We can import CSS to the js file. Because the build tool processes CSS from JavaScript entry point, we can import the stylesheet directly into CommonJS-module.
 
-```html
-<body>
-    <nav>
-    	<span>KN Vietnam Travel</span>
-      <ul>
-        <li><a href="hw2.html" target="_blank">Home</a></li>
-        <li><a href="#">Current Tours</a></li>
-        <li><a href="#">Login</a></li>
-        <li><a href="signup.html" target="_blank">Tour Signup</a></li>
-        <li><a href="#">About Us</a></li>
-      </ul>
-     </nav>
-    <main>
-      <div>
-    	<header>
-    		<h1>Newsletter Signup</h1>
-    	</header>
-    	<img src="images/tra-vinh-market.jpg" width="350" height="250">
-    </div>
-    <div>
-      <h2>Enter Your Information:</h2>
-      <section id="f1">
-  <label>First Name:</label> <input type="text" required>
-  <label>Last Name:</label> <input type="text" required>
-  <label>Email:</label><input type="text" required>
-  <label>How did you hear about us?(optional)</label><input type="text">
-  <label>Comments(optional)</label><textarea name="comments" rows="8" cols="20"></textarea>
-  <button id="b1">Sign me up!</button>
-</section>
-```
-```css
-#f1 {
-  display: grid;
-  text-align: right;
-  grid-template-columns: 10em 20em;
-  padding: 1em;
-  grid-row-gap:1em;
-  grid-column-gap: 1em;
-  margin: 0.5em;
-  border: solid #55cedc;
-  border-radius: 15px;
-  max-width: 40em;
+### (b)
+
+```javascript
+import commonmark from "commonmark";
+import hljs from 'highlight.js';
+import 'highlight.js/styles/idea.css';
+
+function convert(){
+
+var reader = new commonmark.Parser();
+var writer = new commonmark.HtmlRenderer();
+var parsed = reader.parse(document.getElementById("input").value);
+var result = writer.render(parsed);
+document.getElementById("d2").innerHTML +=result;
+document.querySelectorAll('div').forEach((block) => {
+    hljs.highlightBlock(block);
+  });
 }
-#b1{
-  background-color: gold;
-  cursor: pointer;
+
+window.onload = function() {
+  document.getElementById("b1").addEventListener("click",convert);
 }
 ```
+
+![4b](images/4b.png)
 
 ### (c)
 ![4c](images/4c.png)
