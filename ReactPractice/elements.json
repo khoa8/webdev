@@ -1,4 +1,4 @@
-[{
+chemElements = [{
         "atomic_number": 1,
         "name": "Hydrogen",
         "symbol": "H",
@@ -2831,3 +2831,4 @@
         "display_row": 7,
         "display_column": 18
     }]
+
