@@ -105,6 +105,21 @@ window.onload = function() {
 
 ### (c)
 
+[Markdown2HTML App](http://csweb01.csueastbay.edu/~sq9943/hw4/processMD.html).
+
+### (d)
+
+processMD.e3785419.js 1.3 MB
+
+processMD.e3785419.css 1 KB
+
+To reduce the size of the JavaScript file:
+- Using server side compression.
+- Short Coding.
+- Using tools: Javascript Online Minifier Tool; CSS Minifier/Minify Tool.
+- Including CSS and JavaScript as files instead of inline or at the head of each page.
+[from stackoverflow](https://stackoverflow.com/questions/65491/what-is-the-best-method-to-reduce-the-size-of-my-javascript-and-css-files)
+
 ## Question 5
 ### (a) 
 
@@ -131,6 +146,4 @@ ReactDOM.render(<section>
 
 ### (b)
 
-[Drawing App](http://csweb01.csueastbay.edu/~sq9943/randomDrawing.html).
 
-[Tour Site](http://csweb01.csueastbay.edu/~sq9943/hw2.html).
