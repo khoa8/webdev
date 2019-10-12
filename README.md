@@ -134,44 +134,9 @@ export default GuestApp;
 ## Question 3
 ### (a)
 
+![3a](images/3a.png)
+
 ### (b)
-
-```html
-<body>
-    <h1>Markdown to HTML Converter</h1>
-  	<h2>Type Markdown here</h2>
-
-<div id="d1">
-	<textarea name="comments" id="input" rows="11" cols="80" wrap=on></textarea>
-	
-</div>
-	<button type="button" id="b1">Convert to HTML</button>
-	<h3>Rendered HTML</h3>
-<div id="d2">
-	
-</div>
-
-
-</body>
-```
-
-```javascript
-import commonmark from "commonmark";
-
-function convert(){
-
-var reader = new commonmark.Parser();
-var writer = new commonmark.HtmlRenderer();
-var parsed = reader.parse(document.getElementById("input").value);
-var result = writer.render(parsed);
-
-document.getElementById("d2").innerHTML +=result;
-}
-
-window.onload = function() {
-  document.getElementById("b1").addEventListener("click",convert);
-}
-```
 
 ![3b](images/3b.png)
 
