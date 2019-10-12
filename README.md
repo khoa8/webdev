@@ -2,31 +2,134 @@
 
 **NetID**: sq9943
 
-# Homework #4 Solutions
+# Homework #5 Solutions
 
 ## Question 1 
 ### (a)
 
-I get v10.16.3 as my Node.js version, and 6.9.0 as my NPM version.
-
 ### (b)
+
+![1b](images/1b.png)
 
 ### (c)
 
+![1c1](images/1c1.png)
+
+![1c2](images/1c2.png)
+
+![1c3](images/1c3.png)
+
 ### (d)
-
-![1d](images/1d.png)
-
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import GuestApp from './GuestApp';
+import CustomerApp from './CustomerApp';
+import AdminApp from './AdminApp';
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {role: "guest"}; // We will have "user" and "admin" roles too.
+    }
+    // Renders component based on current state and props
+    render() {
+//         return (
+//             <div>
+//             <h2>OOOOOOOP </h2>
+//             <AdminApp />
+//             </div>
+// );
+        let contents = null;
+        switch (this.state.role) {
+            case "guest":
+                contents = <GuestApp />;
+                break;
+            case "customer":
+                contents = <CustomerApp />;
+                break;
+            case "admin":
+                contents = <AdminApp />;
+                break;
+            default:
+                contents = <h2>Warning something went wrong!!!</h2>;
+            }
+        return (
+        <div>
+        {contents}
+        </div>
+        );
+    }
+}
+ReactDOM.render(<App />, document.getElementById("root"));
+```
 ## Question 2
 ### (a)
 
 ### (b)
 
-![2b](images/2b.png)
+![2b1](images/2b1.png)
 
-### (c)
+![2b2](images/2b2.png)
 
-![2c](images/2c.png)
+![2b3](images/2b3.png)
+
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import Home from './Home';
+import About from './About';
+class GuestApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {role: "guest", showing: "home"}; // We will have "user" and "admin" roles too.
+    }
+    
+    homeHandler(event){
+    this.setState({showing: "home"});
+    }
+
+    aboutHandler(event){
+    this.setState({showing: "about"});
+    }
+
+    loginHandler(event){
+    this.setState({showing: "login"});
+    }
+
+    render() {
+        let contents = null;
+        switch (this.state.showing) {
+            case "home":
+                contents = <Home />;
+                break;
+            case "about":
+                contents = <About />;
+                break;
+            case "login":
+                contents = <h2>Login: Not Implement Yet!</h2>;
+                break;
+            default:
+                contents = <h2>WWarning! Something was wrong, again!</h2>;
+        }
+
+        return (
+        <div>
+        <nav id="bar">
+            <span id="s1">KN Vietnam Travel</span>
+            <ul>
+            <li><a href="#">Current Tours</a></li>
+            <li><a href="#" onClick={this.loginHandler.bind(this)}>Customer Login</a></li>
+            <li><a href="#" onClick={this.homeHandler.bind(this)}>Home</a></li>
+            <li><a href="#" onClick={this.aboutHandler.bind(this)}>About Us</a></li>
+            </ul>
+            </nav>
+        {contents}
+        </div>
+        );    
+	}
+}
+export default GuestApp;
+```
 
 ## Question 3
 ### (a)
