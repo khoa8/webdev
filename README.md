@@ -143,7 +143,7 @@ export default GuestApp;
 ## Question 4
 ### (a)
 
-We can import CSS to the js file. Because the build tool processes CSS from JavaScript entry point, we can import the stylesheet directly into CommonJS-module.
+![4a](images/4a.png)
 
 ### (b)
 

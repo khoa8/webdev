@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Home from './Home';
 import About from './About';
+import Login from './Login';
 class GuestApp extends React.Component {
     constructor(props) {
         super(props);
@@ -30,7 +31,7 @@ class GuestApp extends React.Component {
                 contents = <About />;
                 break;
             case "login":
-                contents = <h2>Login: Not Implement Yet!</h2>;
+                contents = <Login />;
                 break;
             default:
                 contents = <h2>WWarning! Something was wrong, again!</h2>;
