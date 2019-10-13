@@ -6,6 +6,7 @@ class CustomerApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {role: "customer", showing: "home"}; // We will have "user" and "admin" roles too.
+        this.tourHandler = this.tourHandler.bind(this);
     }
     tourHandler(event){
     this.setState({showing: "tour"});
@@ -49,7 +50,7 @@ class CustomerApp extends React.Component {
         	<li><a href="#" onClick={this.tourHandler.bind(this)}>Coming Tours</a></li>
         	<li><a href="#">My Tour</a></li>
         	<li><a href="#">About Us</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="#" onClick={this.props.handleLogout}>Logout</a></li>
      		</ul>
      		</nav>
             {contents}
