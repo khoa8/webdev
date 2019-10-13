@@ -68,3 +68,19 @@ div {
   background-color: gray;
   max-width: 1200px;
 }
+#tb {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid black;
+  width: 100%;
+}
+
+#tb td{
+  border: 1px solid black;
+  padding: 8px;
+}
+#tb tr:first-child{
+  font-weight: bold;
+  font-size: larger;
+}

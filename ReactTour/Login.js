@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import AdminApp from './AdminApp';
 class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {email: "", password: ""}; // We will have "user" and "admin" roles too.
+        this.state = {role: "guest", email: "", password: ""}; // We will have "user" and "admin" roles too.
     }
     
 
@@ -13,12 +14,29 @@ class Login extends React.Component {
     this.setState({password: this.element2.value });
     }
 
+    signIn(){
+        if (this.state.email == "admin@gmail.org"){
+            this.props.OnSucess("admin",{name: "Khoa",netid: "sq9943"});
+        }
+        else if(this.state.email == "cust@gmail.org"){
+            this.props.OnSucess("customer",{name: "phe",netid: "zz4557"});
+        } else{
+            this.props.OnSucess("guest",{});
+        }
+    }
+
     render() {
-        
-        return (
-        <div>
+        let contents = null;
+        switch (this.state.role) {
+            case "admin":
+                contents = <AdminApp handleLogin = {this.handleLogin} />;
+                break;
+            case "customer":
+                contents = <CustomerApp handleLogin = {this.handleLogin} />;
+                break;
+            default:
+                contents = (
             <main>
-            <div>
             <header>
             <h1>Login Site</h1>
             </header>
@@ -27,8 +45,12 @@ class Login extends React.Component {
             <label>Password:</label><input ref={el2 => this.element2 = el2} type="password" /><br /><br />
             <input onClick={this.loginHandler.bind(this)} type="button" value="Login" />
             </form>
-            </div>
             </main>
+                    );
+            }ư
+        return (
+        <div>
+            {contents}
         </div>
         );    
     }

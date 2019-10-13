@@ -191,28 +191,60 @@ To reduce the size of the JavaScript file:
 ## Question 5
 ### (a) 
 
-![5a](images/5a.png)
-
-```javascript
-import React from "react";
-import ReactDOM from "react-dom";
-import chemElements from "./elements.json";
-
-// What is this? HTML mixed with JavaScript
-let head1 = <h1>The Periodic Table</h1>;
-let head2 = <h2>Brought to you by Khoa Nguyen sq9943</h2>;
-let intro = <p>There are {parseInt(chemElements.length)} chemical elements.</p>;
-
-ReactDOM.render(<section>
-    {head1}
-    {head2}
-    {intro}
-    </section>,
-    document.getElementById("root")
-);
-
+```json
+[{
+  "Name": "Ho Chi Minh City",
+  "Date": "December 10th",
+  },{
+  "Name": "Da Nang",
+  "Date": "December 20th",
+  },{
+  "Name": "Ha Noi",
+  "Date": "October 30th",
+  },{
+  "Name": "Ho Chi Minh City",
+  "Date": "November 10th",
+}]
+export default Tours;
 ```
 ### (b)
 
-I'm sorry, cannot solve this question at this time. My code has still messed up.
+![5b](images/5b.png)
 
+### Notice: I reuse professor's code from the hw4 solution to create a table in Tour.js. The code is below 
+
+```javascript
+import React from "react";
+
+
+function Tour(props) {
+let cols = props.desiredCols;
+let cElements = props.tours;
+
+let headTDs = cols.map(function(cName, i){
+    return <td key={"col"+i}>{cName}</td>
+});
+let headRow = <tr>{headTDs}</tr>;
+
+let bRows = cElements.map(function(element, i) {
+let rTDs = [];
+for(let col of cols) {
+    rTDs.push(<td key={"col_"+col}>{element[col]}</td>);
+}
+return <tr key={"elem"+i}>{rTDs}</tr>;
+})
+
+return <div>
+    <table id="tb">
+    <tbody>
+        {headRow}
+        {bRows}
+    </tbody>
+    </table>
+    </div>;
+}
+
+export default Tour;
+```
+
+### (c)

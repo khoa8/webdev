@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import Home from './Home';
 import About from './About';
 import Login from './Login';
+import Tour from './Tour.js';
+import tours from "./tours.json";
 class GuestApp extends React.Component {
     constructor(props) {
         super(props);
@@ -21,6 +23,10 @@ class GuestApp extends React.Component {
     this.setState({showing: "login"});
     }
 
+    tourHandler(event){
+    this.setState({showing: "tour"});
+    }
+
     render() {
         let contents = null;
         switch (this.state.showing) {
@@ -33,6 +39,19 @@ class GuestApp extends React.Component {
             case "login":
                 contents = <Login />;
                 break;
+            case "tour":
+                let cols = ["Name", "Date"];
+                contents = 
+                (
+                    <main>
+                    <div>
+                    <h1>Current Tour</h1>
+                    <Tour tours={tours} desiredCols={cols}/>
+                    </div>
+                    </main>
+                );
+
+                break;
             default:
                 contents = <h2>WWarning! Something was wrong, again!</h2>;
         }
@@ -42,7 +61,7 @@ class GuestApp extends React.Component {
         <nav id="bar">
             <span id="s1">KN Vietnam Travel</span>
             <ul>
-            <li><a href="#">Current Tours</a></li>
+            <li><a href="#" onClick={this.tourHandler.bind(this)}>Current Tours</a></li>
             <li><a href="#" onClick={this.loginHandler.bind(this)}>Customer Login</a></li>
             <li><a href="#" onClick={this.homeHandler.bind(this)}>Home</a></li>
             <li><a href="#" onClick={this.aboutHandler.bind(this)}>About Us</a></li>
