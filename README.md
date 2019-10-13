@@ -147,52 +147,114 @@ export default GuestApp;
 
 ### (b)
 
+#### Code added in App
 ```javascript
-import commonmark from "commonmark";
-import hljs from 'highlight.js';
-import 'highlight.js/styles/idea.css';
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {role: "guest"}; // We will have "user" and "admin" roles too.
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+    
 
-function convert(){
+    handleLogin(role,info){
 
-var reader = new commonmark.Parser();
-var writer = new commonmark.HtmlRenderer();
-var parsed = reader.parse(document.getElementById("input").value);
-var result = writer.render(parsed);
-document.getElementById("d2").innerHTML +=result;
-document.querySelectorAll('div').forEach((block) => {
-    hljs.highlightBlock(block);
-  });
-}
+        if (role === "admin"){
+            this.setState({role: "admin",user: info}) 
+        } 
+        else if (role ==="customer"){
+            this.setState({role: "customer",user: info})
+        }
+    }
 
-window.onload = function() {
-  document.getElementById("b1").addEventListener("click",convert);
+    handleLogout(){
+        this.setState({role: "guest",user: null})
+        
+    }
+    
+    render() {
+
+        let contents = null;
+        switch (this.state.role) {
+            case "guest":
+                contents = <GuestApp handleLogin = {this.handleLogin} />;
+                break;
+            case "customer":
+                contents = <CustomerApp handleLogout = {this.handleLogout} />;
+                break;
+            case "admin":
+                contents = <AdminApp handleLogout = {this.handleLogout}/>;
+                break;
+            default:
+                contents = <h2>Warning something went wrong!!!</h2>;
+            }
+        return (
+        <div>
+        {contents}
+        </div>
+        );
+    }
 }
 ```
 
-![4b](images/4b.png)
+#### Code added in Login
+```javascript
+class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {role: "guest", email: "", password: ""}; // We will have "user" and "admin" roles too.
+        this.loginHandler = this.loginHandler.bind(this);
+    }
+    
+    loginHandler(event){
+    this.setState({email: this.element1.value });
+    this.setState({password: this.element2.value });
+    }
+
+    render() {
+        let contents = null;
+        switch (this.state.email) {
+            case "admin@gmail.org":
+            this.props.handleLogin("admin",{name: "Khoa",Id: "sq9943"});
+            break;
+            case "customer":
+            this.props.handleLogin("customer",{name: "Khoa",Id: "sq9943"});
+            break;
+            default:
+                contents = (
+            <main>
+            <header>
+            <h1>Login Site</h1>
+            </header>
+            <form>
+            <label>Email:</label><input ref={el1 => this.element1 = el1} type="text" /><br /><br />
+            <label>Password:</label><input ref={el2 => this.element2 = el2} type="password" /><br /><br />
+            <input onClick={this.loginHandler.bind(this)} type="button" value="Login" />
+            </form>
+            </main>
+                    );
+            }
+        return (
+        <div>
+            {contents}
+        </div>
+        );    
+    }
+}
+```
 
 ### (c)
 
-[Markdown2HTML App](http://csweb01.csueastbay.edu/~sq9943/hw4/processMD.html).
-
-### (d)
-
-processMD.e3785419.js 1.3 MB
-
-processMD.e3785419.css 1 KB
-
-To reduce the size of the JavaScript file:
-- Using server side compression.
-- Short Coding.
-- Using tools: Javascript Online Minifier Tool; CSS Minifier/Minify Tool.
-- Including CSS and JavaScript as files instead of inline or at the head of each page.
-[from stackoverflow](https://stackoverflow.com/questions/65491/what-is-the-best-method-to-reduce-the-size-of-my-javascript-and-css-files)
+```javascript
+<li><a href="#" onClick={this.props.handleLogout}>Logout</a></li>
+```
 
 ## Question 5
 ### (a) 
 
 ```json
-[{
+tours = [{
   "Name": "Ho Chi Minh City",
   "Date": "December 10th",
   },{
@@ -205,7 +267,7 @@ To reduce the size of the JavaScript file:
   "Name": "Ho Chi Minh City",
   "Date": "November 10th",
 }]
-export default Tours;
+
 ```
 ### (b)
 
@@ -245,6 +307,8 @@ return <div>
 }
 
 export default Tour;
-```
+```
 
 ### (c)
+
+[Link to HW5](http://csweb01.csueastbay.edu/~sq9943/hw5/index.html)

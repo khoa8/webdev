@@ -6,10 +6,22 @@ class AdminApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {role: "admin", showing: "home"}; // We will have "user" and "admin" roles too.
+        this.mnacustomerHandler = this.mnacustomerHandler.bind(this);
+        //this.logoutHandler = this.logoutHandler.bind(this);
+        this.homeHandler = this.homeHandler.bind(this);
     }
-    customerHandler(event){
-    this.setState({showing: "customer"});
+    mnacustomerHandler(event){
+    this.setState({showing: "mnacustomer"});
     }
+
+    homeHandler(event){
+    this.setState({showing: "home"});
+    }
+
+    // logoutHandler(event){
+    // this.handleLogout;
+    // }
+
     render() {
 
     	let im1 = <img src={i1} width="600" height="400" />;
@@ -35,7 +47,7 @@ class AdminApp extends React.Component {
             </main>
             );
                 break;
-            case "customer":
+            case "mnacustomer":
                 contents = <h2>Manage Customers: Not Implement Yet!</h2>;
                 break;
             default:
@@ -47,9 +59,9 @@ class AdminApp extends React.Component {
     		<span id="s1">KN Vietnam Travel</span>
       		<ul>
         	<li><a href="#">Manage Tours</a></li>
-        	<li><a href="#" onClick={this.customerHandler.bind(this)}>Manage Customers</a></li>
-        	<li><a href="#">Home</a></li>
-        	<li><a href="#">Logout</a></li>
+        	<li><a href="#" onClick={this.mnacustomerHandler.bind(this)}>Manage Customers</a></li>
+        	<li><a href="#" onClick={this.homeHandler.bind(this)}>Home</a></li>
+        	<li><a href="#" onClick={this.props.handleLogout}>Logout</a></li>
      		</ul>
      		</nav>
      		{contents}

@@ -9,6 +9,10 @@ class GuestApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {role: "guest", showing: "home"}; // We will have "user" and "admin" roles too.
+        this.homeHandler = this.homeHandler.bind(this);
+        this.aboutHandler = this.aboutHandler.bind(this);
+        this.loginHandler = this.loginHandler.bind(this);
+        this.tourHandler = this.tourHandler.bind(this);
     }
     
     homeHandler(event){
@@ -37,7 +41,7 @@ class GuestApp extends React.Component {
                 contents = <About />;
                 break;
             case "login":
-                contents = <Login />;
+                contents = <Login handleLogin = {this.props.handleLogin}/>;
                 break;
             case "tour":
                 let cols = ["Name", "Date"];

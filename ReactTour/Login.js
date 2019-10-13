@@ -1,39 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import AdminApp from './AdminApp';
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {role: "guest", email: "", password: ""}; // We will have "user" and "admin" roles too.
+        this.loginHandler = this.loginHandler.bind(this);
     }
     
-
-
     loginHandler(event){
     this.setState({email: this.element1.value });
     this.setState({password: this.element2.value });
     }
 
-    signIn(){
-        if (this.state.email == "admin@gmail.org"){
-            this.props.OnSucess("admin",{name: "Khoa",netid: "sq9943"});
-        }
-        else if(this.state.email == "cust@gmail.org"){
-            this.props.OnSucess("customer",{name: "phe",netid: "zz4557"});
-        } else{
-            this.props.OnSucess("guest",{});
-        }
-    }
-
     render() {
         let contents = null;
-        switch (this.state.role) {
-            case "admin":
-                contents = <AdminApp handleLogin = {this.handleLogin} />;
-                break;
-            case "customer":
-                contents = <CustomerApp handleLogin = {this.handleLogin} />;
-                break;
+        switch (this.state.email) {
+            case "admin@email.org":
+            this.props.handleLogin("admin",{name: "Khoa",Id: "sq9943"});
+            break;
+            case "cust@email.org":
+            this.props.handleLogin("customer",{name: "Khoa",Id: "sq9943"});
+            break;
             default:
                 contents = (
             <main>
@@ -47,7 +34,7 @@ class Login extends React.Component {
             </form>
             </main>
                     );
-            }ư
+            }
         return (
         <div>
             {contents}

@@ -8,29 +8,23 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {role: "guest"}; // We will have "user" and "admin" roles too.
-   
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
     
-        handleLogin(role,Info){
+
+    handleLogin(role,info){
 
         if (role === "admin"){
-            this.setState({
-                role: "admin",
-                user: Info
-            }) 
-        } else if (role ==="customer"){
-            this.setState({
-                role: "customer",
-                user: Info
-            })
+            this.setState({role: "admin",user: info}) 
+        } 
+        else if (role ==="customer"){
+            this.setState({role: "customer",user: info})
         }
     }
 
     handleLogout(){
-        this.setState({
-            role: "guest",
-            user: null
-        })
+        this.setState({role: "guest",user: null})
         
     }
     
@@ -44,13 +38,13 @@ class App extends React.Component {
         let contents = null;
         switch (this.state.role) {
             case "guest":
-                contents = <GuestApp />;
+                contents = <GuestApp handleLogin = {this.handleLogin} />;
                 break;
             case "customer":
-                contents = <CustomerApp />;
+                contents = <CustomerApp handleLogout = {this.handleLogout} />;
                 break;
             case "admin":
-                contents = <AdminApp />;
+                contents = <AdminApp handleLogout = {this.handleLogout} />;
                 break;
             default:
                 contents = <h2>Warning something went wrong!!!</h2>;
