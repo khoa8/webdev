@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import i1 from "../images/i1.jpg";
-import i2 from "../images/i2.jpg";
+import i1 from "../../images/i1.jpg";
+import i2 from "../../images/i2.jpg";
 class CustomerApp extends React.Component {
     constructor(props) {
         super(props);

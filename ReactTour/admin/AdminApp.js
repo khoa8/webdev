@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import i1 from "../images/i1.jpg";
-import i2 from "../images/i2.jpg";
+import i1 from "../../images/i1.jpg";
+import i2 from "../../images/i2.jpg";
+import AdminTour from "./AdminTour";
 class AdminApp extends React.Component {
     constructor(props) {
         super(props);
@@ -9,6 +10,7 @@ class AdminApp extends React.Component {
         this.mnacustomerHandler = this.mnacustomerHandler.bind(this);
         //this.logoutHandler = this.logoutHandler.bind(this);
         this.homeHandler = this.homeHandler.bind(this);
+        this.tourHandler = this.tourHandler.bind(this);
     }
     mnacustomerHandler(event){
     this.setState({showing: "mnacustomer"});
@@ -16,6 +18,10 @@ class AdminApp extends React.Component {
 
     homeHandler(event){
     this.setState({showing: "home"});
+    }
+
+    tourHandler(event){
+        this.setState({showing: "mnatour"});
     }
 
     // logoutHandler(event){
@@ -50,6 +56,9 @@ class AdminApp extends React.Component {
             case "mnacustomer":
                 contents = <h2>Manage Customers: Not Implement Yet!</h2>;
                 break;
+            case "mnatour":
+                contents = <AdminTour />;
+                break;
             default:
                 contents = <h2>WWarning! Something was wrong, again!</h2>;
         }
@@ -58,7 +67,7 @@ class AdminApp extends React.Component {
         	<nav id="bar">
     		<span id="s1">KN Vietnam Travel</span>
       		<ul>
-        	<li><a href="#">Manage Tours</a></li>
+        	<li><a href="#" onClick={this.tourHandler.bind(this)}>Manage Tours</a></li>
         	<li><a href="#" onClick={this.mnacustomerHandler.bind(this)}>Manage Customers</a></li>
         	<li><a href="#" onClick={this.homeHandler.bind(this)}>Home</a></li>
         	<li><a href="#" onClick={this.props.handleLogout}>Logout</a></li>

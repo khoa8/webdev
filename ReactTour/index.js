@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import GuestApp from './GuestApp';
-import CustomerApp from './CustomerApp';
-import AdminApp from './AdminApp';
-import Login from './Login';
+import GuestApp from './guest/GuestApp';
+import CustomerApp from './cust/CustomerApp';
+import AdminApp from './admin/AdminApp';
+import Login from './guest/Login';
 class App extends React.Component {
     constructor(props) {
         super(props);

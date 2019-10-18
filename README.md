@@ -2,10 +2,12 @@
 
 **NetID**: sq9943
 
-# Homework #5 Solutions
+# Homework #6 Solutions
 
 ## Question 1 
 ### (a)
+
+![1a](images/1a.png)
 
 ### (b)
 
@@ -13,55 +15,44 @@
 
 ### (c)
 
-![1c1](images/1c1.png)
-
-![1c2](images/1c2.png)
-
-![1c3](images/1c3.png)
-
 ### (d)
 ```javascript
-import React from "react";
-import ReactDOM from "react-dom";
-import GuestApp from './GuestApp';
-import CustomerApp from './CustomerApp';
-import AdminApp from './AdminApp';
-class App extends React.Component {
-    constructor(props) {
+constructor(props) {
         super(props);
-        this.state = {role: "guest"}; // We will have "user" and "admin" roles too.
+        this.state = {role: "admin", showing: "tour", add: false, modifyTour: true, addName: "", addDate: ""};
+        this.addHandler = this.addHandler.bind(this);
+        this.adding = this.adding.bind(this);
     }
-    // Renders component based on current state and props
-    render() {
-//         return (
-//             <div>
-//             <h2>OOOOOOOP </h2>
-//             <AdminApp />
-//             </div>
-// );
-        let contents = null;
-        switch (this.state.role) {
-            case "guest":
-                contents = <GuestApp />;
-                break;
-            case "customer":
-                contents = <CustomerApp />;
-                break;
-            case "admin":
-                contents = <AdminApp />;
-                break;
-            default:
-                contents = <h2>Warning something went wrong!!!</h2>;
-            }
-        return (
-        <div>
-        {contents}
-        </div>
-        );
-    }
-}
-ReactDOM.render(<App />, document.getElementById("root"));
 ```
+### (e)
+```javascript
+<input onClick={this.addHandler.bind(this)} type="button" value="Add Tour" />
+                    {this.state.add &&
+                    <form>
+                    <fieldset>
+                    <legend>Fill out the info below</legend>
+                    <label>Name:</label><input ref={el1 => this.element1 = el1} type="text" size="50" /><br /><br />
+                    <label>Date:</label><input ref={el2 => this.element2 = el2} type="text" size="50" /><br /><br />
+                    <input onClick={this.adding.bind(this)} type="button" value="ADD" /><br />
+                    </fieldset>
+                    </form>
+                    }
+```
+
+### (f)
+```javascript
+addHandler(event){
+        this.setState({add: !this.state.add});
+        }
+    adding(event){
+        this.setState({addName: this.element1.value });
+        this.setState({addDate: this.element2.value });
+        let anchors = {"Name" : this.element1.value, "Date" : this.element2.value};
+        fs = require("fs");
+        fs.writeFile("../guest/tours.json", JSON.stringify(anchors, null, 4));
+        }
+```
+
 ## Question 2
 ### (a)
 
@@ -132,13 +123,26 @@ export default GuestApp;
 ```
 
 ## Question 3
-### (a)
+### (a) Your Network Interfaces
 
 ![3a](images/3a.png)
 
-### (b)
+### (b1) Ethernet Address of your machine(s)
 
-![3b](images/3b.png)
+![3b1](images/3b1.png)
+
+### (b2) Type of IP Addresses of your machine
+
+![3b2](images/3b2.png)
+
+### (c) IP Address of a public website - csueastbay.edu 
+
+```code
+134.154.136.39
+```
+### (d) Where is the server?
+
+![3d](images/3d.png)
 
 ## Question 4
 ### (a)
@@ -249,66 +253,3 @@ class Login extends React.Component {
 ```javascript
 <li><a href="#" onClick={this.props.handleLogout}>Logout</a></li>
 ```
-
-## Question 5
-### (a) 
-
-```json
-tours = [{
-  "Name": "Ho Chi Minh City",
-  "Date": "December 10th",
-  },{
-  "Name": "Da Nang",
-  "Date": "December 20th",
-  },{
-  "Name": "Ha Noi",
-  "Date": "October 30th",
-  },{
-  "Name": "Ho Chi Minh City",
-  "Date": "November 10th",
-}]
-
-```
-### (b)
-
-![5b](images/5b.png)
-
-### Notice: I reuse professor's code from the hw4 solution to create a table in Tour.js. The code is below 
-
-```javascript
-import React from "react";
-
-
-function Tour(props) {
-let cols = props.desiredCols;
-let cElements = props.tours;
-
-let headTDs = cols.map(function(cName, i){
-    return <td key={"col"+i}>{cName}</td>
-});
-let headRow = <tr>{headTDs}</tr>;
-
-let bRows = cElements.map(function(element, i) {
-let rTDs = [];
-for(let col of cols) {
-    rTDs.push(<td key={"col_"+col}>{element[col]}</td>);
-}
-return <tr key={"elem"+i}>{rTDs}</tr>;
-})
-
-return <div>
-    <table id="tb">
-    <tbody>
-        {headRow}
-        {bRows}
-    </tbody>
-    </table>
-    </div>;
-}
-
-export default Tour;
-```
-
-### (c)
-
-[Link to HW5](http://csweb01.csueastbay.edu/~sq9943/hw5/index.html)
