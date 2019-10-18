@@ -155,105 +155,21 @@ export default GuestApp;
 
 ### (b)
 
-#### Code added in App
-```javascript
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {role: "guest"}; // We will have "user" and "admin" roles too.
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleLogout = this.handleLogout.bind(this);
-    }
-    
-
-    handleLogin(role,info){
-
-        if (role === "admin"){
-            this.setState({role: "admin",user: info}) 
-        } 
-        else if (role ==="customer"){
-            this.setState({role: "customer",user: info})
-        }
-    }
-
-    handleLogout(){
-        this.setState({role: "guest",user: null})
-        
-    }
-    
-    render() {
-
-        let contents = null;
-        switch (this.state.role) {
-            case "guest":
-                contents = <GuestApp handleLogin = {this.handleLogin} />;
-                break;
-            case "customer":
-                contents = <CustomerApp handleLogout = {this.handleLogout} />;
-                break;
-            case "admin":
-                contents = <AdminApp handleLogout = {this.handleLogout}/>;
-                break;
-            default:
-                contents = <h2>Warning something went wrong!!!</h2>;
-            }
-        return (
-        <div>
-        {contents}
-        </div>
-        );
-    }
-}
-```
-
-#### Code added in Login
-```javascript
-class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {role: "guest", email: "", password: ""}; // We will have "user" and "admin" roles too.
-        this.loginHandler = this.loginHandler.bind(this);
-    }
-    
-    loginHandler(event){
-    this.setState({email: this.element1.value });
-    this.setState({password: this.element2.value });
-    }
-
-    render() {
-        let contents = null;
-        switch (this.state.email) {
-            case "admin@gmail.org":
-            this.props.handleLogin("admin",{name: "Khoa",Id: "sq9943"});
-            break;
-            case "customer":
-            this.props.handleLogin("customer",{name: "Khoa",Id: "sq9943"});
-            break;
-            default:
-                contents = (
-            <main>
-            <header>
-            <h1>Login Site</h1>
-            </header>
-            <form>
-            <label>Email:</label><input ref={el1 => this.element1 = el1} type="text" /><br /><br />
-            <label>Password:</label><input ref={el2 => this.element2 = el2} type="password" /><br /><br />
-            <input onClick={this.loginHandler.bind(this)} type="button" value="Login" />
-            </form>
-            </main>
-                    );
-            }
-        return (
-        <div>
-            {contents}
-        </div>
-        );    
-    }
-}
-```
+this #1 : object Window // In a general function, this refers to the global object.
+this #2 : instance of myObj1 pointed from its method // In a method, this refers to the owner object.
+this #3 : instance of myObj2 // with bind(), this refers to the wrapped object in bind()
 
 ### (c)
 
-```javascript
-<li><a href="#" onClick={this.props.handleLogout}>Logout</a></li>
+```code
+Is this the start?
+When does this print?
+Is this the end?
+undefined
+this is a msg from CS651
+This is a msg from CS351
 ```
+#### Explain:
+
+There are 3 messages in the queue: console.log('Is this the start?'), console.log('When does this print?'), console.log('Is this the end?').
+So, the setTimeout messages will have to wait for other messages to be processed eventhough the time values are 0 and default (means 0, too). After that, the setTimeout(cs651) will be printed next because it's on the queue before the setTimeout(cs351, 0); finally, print the message from setTimeout(cs351, 0).
