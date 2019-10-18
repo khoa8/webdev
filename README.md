@@ -147,7 +147,11 @@ export default GuestApp;
 ## Question 4
 ### (a)
 
-![4a](images/4a.png)
+2 purposes:
+
+-Pointing to an instance of an object from its own constructor or its methods. 
+
+-Keeping track of execution context — which is often based on where a function was called from.
 
 ### (b)
 
