@@ -173,3 +173,15 @@ This is a msg from CS351
 
 There are 3 messages in the queue: console.log('Is this the start?'), console.log('When does this print?'), console.log('Is this the end?').
 So, the setTimeout messages will have to wait for other messages to be processed eventhough the time values are 0 and default (means 0, too). After that, the setTimeout(cs651) will be printed next because it's on the queue before the setTimeout(cs351, 0); finally, print the message from setTimeout(cs351, 0).
+
+### (d)
+
+The code returns a promise that fulfills (resolves) as soon as one of the promises in an iterable (array) fulfills after a random time of each, with the value (name) from that promise. Then with the function "winner", the code wants to show the name of winner of the “promise race".
+
+```code
+myPs = [myP1, myP2, myP3];
+racingPs = Promise.race(myPs);
+racingPs.then(function(value) {
+    winner(value);
+});
+```
