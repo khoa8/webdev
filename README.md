@@ -178,7 +178,7 @@ So, the setTimeout messages will have to wait for other messages to be processed
 
 The code returns a promise that fulfills (resolves) as soon as one of the promises in an iterable (array) fulfills after a random time of each, with the value (name) from that promise. Then with the function "winner", the code wants to show the name of winner of the “promise race".
 
-```code
+```code
 myPs = [myP1, myP2, myP3];
 racingPs = Promise.race(myPs);
 racingPs.then(function(value) {
