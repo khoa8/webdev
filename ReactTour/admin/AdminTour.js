@@ -5,20 +5,18 @@ import tours from "../guest/tours.json";
 class AdminTour extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {role: "admin", showing: "tour", add: false, modifyTour: true, addName: "", addDate: ""};
+        this.state = {role: "admin", showing: "tour", add: false, modifyTour: true, addName: "", addDate: "", ctours: tours};
         this.addHandler = this.addHandler.bind(this);
-        this.adding = this.adding.bind(this);
+        this.addtour = this.addtour.bind(this);
     }
 
     addHandler(event){
         this.setState({add: !this.state.add});
         }
-    adding(event){
+    addtour(event){
         this.setState({addName: this.element1.value });
         this.setState({addDate: this.element2.value });
-        let anchors = {"Name" : this.element1.value, "Date" : this.element2.value};
-        fs = require("fs");
-        fs.writeFile("../guest/tours.json", JSON.stringify(anchors, null, 4));
+        this.setState({ctours: this.state.ctours.concat({"Name" : this.element1.value, "Date" : this.element2.value})});
         }
 
     render() {
@@ -38,12 +36,12 @@ class AdminTour extends React.Component {
                     <legend>Fill out the info below</legend>
                     <label>Name:</label><input ref={el1 => this.element1 = el1} type="text" size="50" /><br /><br />
                     <label>Date:</label><input ref={el2 => this.element2 = el2} type="text" size="50" /><br /><br />
-                    <input onClick={this.adding.bind(this)} type="button" value="ADD" /><br />
+                    <input onClick={this.addtour.bind(this)} type="button" value="ADD" /><br />
                     </fieldset>
                     </form>
                     }
                     <h2>Current Tour</h2>
-                    <Tour tours={tours} desiredCols={cols} modifyTour={this.state.modifyTour} />
+                    <Tour tours={this.state.ctours} desiredCols={cols} modifyTour={this.state.modifyTour} />
                     </div>
                     </main>
                 );
