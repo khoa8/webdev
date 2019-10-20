@@ -125,7 +125,9 @@ deltour(event) {
 ### (b)
 
 this #1 : object Window // In a general function, this refers to the global object.
+
 this #2 : instance of myObj1 pointed from its method // In a method, this refers to the owner object.
+
 this #3 : instance of myObj2 // with bind(), this refers to the wrapped object in bind()
 
 ### (c)
