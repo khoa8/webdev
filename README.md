@@ -54,6 +54,11 @@ addtour(event){
 ```
 
 ## Question 2
+
+### Note: I change the outline to show the delete function outside the table in order to solve this question since I still get some errors when deleting the tours while the delete buttons are inside the table. Admin user will enter the tour number in the input field, then the corresponding tour will be deleted from the table. 
+
+![2a](images/2a.png)
+
 ### (a)
 
 ![2a1](images/2a1.png)
