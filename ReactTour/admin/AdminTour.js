@@ -8,6 +8,8 @@ class AdminTour extends React.Component {
         this.state = {role: "admin", showing: "tour", add: false, modifyTour: true, addName: "", addDate: "", ctours: tours};
         this.addHandler = this.addHandler.bind(this);
         this.addtour = this.addtour.bind(this);
+        this.delHandler = this.delHandler.bind(this);
+        this.deltour = this.deltour.bind(this);
     }
 
     addHandler(event){
@@ -16,13 +18,24 @@ class AdminTour extends React.Component {
     addtour(event){
         this.setState({addName: this.element1.value });
         this.setState({addDate: this.element2.value });
-        this.setState({ctours: this.state.ctours.concat({"Name" : this.element1.value, "Date" : this.element2.value})});
+        this.setState({ctours: this.state.ctours.concat({"Tour#" : this.state.ctours.length + 1,"Name" : this.element1.value, "Date" : this.element2.value})});
+        }
+
+    delHandler(event){
+        this.setState({del: !this.state.del});
+        } 
+    deltour(event) { 
+        let val = this.element3.value;
+        this.setState({ctours: this.state.ctours.filter(function(value){
+                            return value["Tour#"] !== val;
+                            })
+                            });
         }
 
     render() {
 
         let contents = null;
-        let cols = ["Name", "Date"];
+        let cols = ["Tour#", "Name", "Date"];
         contents = (
                     <main>
                     <header>
@@ -37,6 +50,17 @@ class AdminTour extends React.Component {
                     <label>Name:</label><input ref={el1 => this.element1 = el1} type="text" size="50" /><br /><br />
                     <label>Date:</label><input ref={el2 => this.element2 = el2} type="text" size="50" /><br /><br />
                     <input onClick={this.addtour.bind(this)} type="button" value="ADD" /><br />
+                    </fieldset>
+                    </form>
+                    }
+                    <br /><br /><br /><br />
+                    <input onClick={this.delHandler.bind(this)} type="button" value="DEL Tour !!!" />
+                    {this.state.del &&
+                    <form>
+                    <fieldset>
+                    <legend>Choose the tour to delete</legend>
+                    <label>Tour #:</label><input ref={el3 => this.element3 = el3} type="text" size="10" />
+                    <input onClick={this.deltour.bind(this)} type="button" value="DELETE !!" /><br />
                     </fieldset>
                     </form>
                     }
