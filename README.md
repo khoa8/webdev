@@ -161,26 +161,32 @@ console.log(`The session lasted ${data.points.length/60} minutes`);
 ```
 
 ## Question 3
-### (a) Your Network Interfaces
+### (a)
 
 ![3a](images/3a.png)
 
-### (b1) Ethernet Address of your machine(s)
+### (b)
 
-![3b1](images/3b1.png)
+![3b](images/3b.png)
 
-### (b2) Type of IP Addresses of your machine
+### (c)
 
-![3b2](images/3b2.png)
-
-### (c) IP Address of a public website - csueastbay.edu 
+![3c](images/3c.png)
 
 ```code
-134.154.136.39
-```
-### (d) Where is the server?
+const express = require('express');
 
-![3d](images/3d.png)
+const app = express();
+const port = 1111;
+const host = '127.43.43.8';
+let name = 'Khoa Nguyen';
+let netid = 'sq9943';
+let dateTime = new Date();
+
+app.get('/', (req, res) => res.send(`${dateTime} Name: ${name}, NetID: ${netid}`))
+
+app.listen(port, host,  () => console.log(`Combine app listening on IPv4: ${host}:${port}`))
+```
 
 ## Question 4
 ### (a)
