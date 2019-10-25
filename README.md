@@ -191,19 +191,38 @@ app.listen(port, host,  () => console.log(`Combine app listening on IPv4: ${host
 ## Question 4
 ### (a)
 
-2 purposes:
+![4a](images/4a.png)
 
--Pointing to an instance of an object from its own constructor or its methods. 
+```code
+const express = require('express');
+const data = require('./tours.json');
 
--Keeping track of execution context — which is often based on where a function was called from.
+const app = express();
+const port = 1111;
+const host = '127.43.43.8';
+
+app.get('/tours', (req, res) => res.send(data))
+
+app.listen(port, host,  () => console.log(`TourServer listening on IPv4: ${host}:${port}`))
+```
 
 ### (b)
 
-this #1 : object Window // In a general function, this refers to the global object.
+![4b](images/4b.png)
 
-this #2 : instance of myObj1 pointed from its method // In a method, this refers to the owner object.
+```code
+const request_promise = require('request-promise-native'); 
 
-this #3 : instance of myObj2 // with bind(), this refers to the wrapped object in bind()
+let site = { 
+    uri: 'http://127.43.43.8:1111/tours', 
+    json: true 
+}; 
+    
+request_promise(site).then(function(data){ 
+    data.map((element, index) => {
+        console.log(`Tour ${index+1} name ${element.Name}, date: ${element.Date}`);
+})});
+````
 
 ### (c)
 
