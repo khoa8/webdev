@@ -115,59 +115,49 @@ query:
 
 fragment:
 
-### (f)
-```javascript
-addHandler(event){
-    this.setState({add: !this.state.add});
-    }
-addtour(event){
-    this.setState({addName: this.element1.value });
-    this.setState({addDate: this.element2.value });
-    this.setState({ctours: this.state.ctours.concat({"Name" : this.element1.value, "Date" : this.element2.value})});
-    }
-```
-
 ## Question 2
-
-### Note: I change the outline to show the delete function outside the table in order to solve this question since I still get some errors when deleting the tours while the delete buttons are inside the table. Admin user will enter the tour number in the input field, then the corresponding tour will be deleted from the table. 
+### (a)
 
 ![2a](images/2a.png)
 
-### (a)
+```javascript
+const request_promise = require('request-promise-native');
 
-![2a1](images/2a1.png)
-
-![2a2](images/2a2.png)
+let site = {
+    uri: 'https://windsurf.grotto-networking.com/data/logs/windEvents2013.json', 
+    json: true 
+};
+    
+request_promise(site).then(function(data){ 
+    let max10sec = data.map(m => m.max10sec); 
+    let distance = data.map(d => d.distance); 
+    let s = max10sec.reduce((accumulator, currentValue) => {return Math.max(accumulator, currentValue)}); 
+    let d = distance.reduce((accumulator, currentValue) => {return Math.max(accumulator, currentValue)}); 
+    console.log(`The number of sailing sessions in 2013 was: ${data.length}`);
+    console.log(`The fastest 10 second speed average was: ${s}`); 
+    console.log(`The longest single day distance was: ${d}`); 
+})
+```
 
 ### (b)
 
-```javascript
-<input onClick={this.delHandler.bind(this)} type="button" value="DEL Tour !!!" />
-{this.state.del &&
-<form>
-<fieldset>
-<legend>Choose the tour to delete</legend>
-<label>Tour #:</label><input ref={el3 => this.element3 = el3} type="text" size="10" />
-<input onClick={this.deltour.bind(this)} type="button" value="DELETE !!" /><br />
-</fieldset>
-</form>
-}
-<h2>Current Tour</h2>
-<Tour tours={this.state.ctours} desiredCols={cols} modifyTour={this.state.modifyTour} />
-```
+![2b](images/2b.png)
+
 ### (c)
 
+![2c](images/2c.png)
+
 ```javascript
-delHandler(event){
-    this.setState({del: !this.state.del});
-    } 
-deltour(event) { 
-    let val = this.element3.value;
-    this.setState({ctours: this.state.ctours.filter(function(value){
-                            return value["Tour#"] !== val;
-                            })
-                            });
-    }
+const request_promise = require('request-promise-native'); 
+
+let site = { 
+    uri: 'https://windsurf.grotto-networking.com/data/tracks/track_2013_10_28.json', 
+    json: true }; 
+    
+request_promise(site).then(function(data){ 
+console.log(`The start time of track_2013_10_28 was: ${data.start_time}`);
+console.log(`The session lasted ${data.points.length/60} minutes`);
+})
 ```
 
 ## Question 3
