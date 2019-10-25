@@ -2,12 +2,19 @@
 
 **NetID**: sq9943
 
-# Homework #6 Solutions
+# Homework #7 Solutions
 
 ## Question 1 
 ### (a)
 
-![1a](images/1a.png)
+What HTTP Method is used in the request?
+GET
+
+What is the response code and what does it mean?
+200 OK - the request has succeeded
+
+What version of HTTP is being used?
+HTTP/1.1
 
 ### (b)
 
