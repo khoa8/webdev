@@ -222,31 +222,26 @@ request_promise(site).then(function(data){
     data.map((element, index) => {
         console.log(`Tour ${index+1} name ${element.Name}, date: ${element.Date}`);
 })});
-````
-
-### (c)
-
-```code
-Is this the start?
-When does this print?
-Is this the end?
-undefined
-this is a msg from CS651
-This is a msg from CS351
 ```
-#### Explain:
 
-There are 3 messages in the queue: console.log('Is this the start?'), console.log('When does this print?'), console.log('Is this the end?').
-So, the setTimeout messages will have to wait for other messages to be processed eventhough the time values are 0 and default (means 0, too). After that, the setTimeout(cs651) will be printed next because it's on the queue before the setTimeout(cs351, 0); finally, print the message from setTimeout(cs351, 0).
+## Question 5
 
-### (d)
-
-The code returns a promise that fulfills (resolves) as soon as one of the promises in an iterable (array) fulfills after a random time of each, with the value (name) from that promise. Then with the function "winner", the code wants to show the name of winner of the “promise race".
+### (a)
 
 ```code
-myPs = [myP1, myP2, myP3];
-racingPs = Promise.race(myPs);
-racingPs.then(function(value) {
-    winner(value);
-});
+const express = require('express');
+const data = require('./tours.json');
+const bodyParser = require('body-parser');
+
+const app = express();
+const port = 1111;
+const host = '127.43.43.8';
+app.use(express.json());
+app.post('/tours/add', (req, res) => {
+    req.body.get({'Name': 'new!', 'Date': 'unknow!'})
+})
+
+app.get('/tours', (req, res) => res.send(data))
+
+app.listen(port, host,  () => console.log(`TourServer listening on IPv4: ${host}:${port}`))
 ```
