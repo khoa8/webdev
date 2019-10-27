@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.urlencoded());
 app.post('/tours/add', (req, res) => {
-    data += req.body;
+    data.push(req.body);
     console.log(req.body);
     res.json(req.body);
 })
