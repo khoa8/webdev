@@ -65,103 +65,119 @@ It is important to keep logs of various activities associated with the web app b
 ## Question 3
 ### (a)
 
-![3a](images/3a.png)
+```code
+hashedUsers = users.map(data =>{
+    let salt = bcrypt.genSaltSync(nRounds);
+    let passHash = bcrypt.hashSync(data.password, salt);
+
+    return {
+        "firstName": data.firstName,
+        "lastName" : data.lastName,
+        "email": data.email,
+        "password": passHash,
+        "role": data.role
+    };
+ 
+});
+```
+
+```code
+{
+    "firstName": "Arlen",
+    "lastName": "Melton",
+    "email": "sided1830@outlook.com",
+    "password": "$2a$10$wLw5wfjKqOuyQUgj9V6BLORXXaih.3FwMYNbCMwvwqn4ZOrYRF8C.",
+    "role": "admin"
+  },
+  {
+    "firstName": "Luna",
+    "lastName": "Munoz",
+    "email": "sylvan2059@live.com",
+    "password": "$2a$10$4SEhyH8knJg5kaA6z7zeROg2UVw6fAYhtzsDy2dzHc6MPj35P9k32",
+    "role": "customer"
+  }
+```
 
 ### (b)
 
 ![3b](images/3b.png)
 
-### (c)
-
-![3c](images/3c.png)
-
-```code
-const express = require('express');
-
-const app = express();
-const port = 1111;
-const host = '127.43.43.8';
-let name = 'Khoa Nguyen';
-let netid = 'sq9943';
-let dateTime = new Date();
-
-app.get('/', (req, res) => res.send(`${dateTime} Name: ${name}, NetID: ${netid}`))
-
-app.listen(port, host,  () => console.log(`Combine app listening on IPv4: ${host}:${port}`))
-```
-
 ## Question 4
 ### (a)
 
-![4a](images/4a.png)
-
 ```code
-const express = require('express');
-const data = require('./tours.json');
+const data = require('./userTourHash.json');
+const bcrypt = require('bcryptjs');
 
-const app = express();
-const port = 1111;
-const host = '127.43.43.8';
-
-app.get('/tours', (req, res) => res.send(data))
-
-app.listen(port, host,  () => console.log(`TourServer listening on IPv4: ${host}:${port}`))
-```
-
-### (b)
-
-![4b](images/4b.png)
-
-```code
-const request_promise = require('request-promise-native'); 
-
-let site = { 
-    uri: 'http://127.43.43.8:1111/tours', 
-    json: true 
-}; 
+app.post('/login', function (req, res) {
+    console.log(req.body);
+    let email = req.body.email;
+    let password = req.body.password;
+    let user = data.find( u => {
+        return u.email === email
+    });
+    if (user) {
+    	let verified = bcrypt.compareSync(password, user.passHash);
+    	if (verified) {
+    	res.json({
+        "firstName": user.firstName,
+        "lastName" : user.lastName,
+        "email": user.email,
+        "role": user.role
+    });
+        res.end();
+    } else {
+        res.status(401).json({error: true, message: "User/Password error"});
+    	}
+	}
+    else {
+        res.status(401).json({error: true, message: "User/Password error"});
+    }
     
-request_promise(site).then(function(data){ 
-    data.map((element, index) => {
-        console.log(`Tour ${index+1} name ${element.Name}, date: ${element.Date}`);
-})});
+});
 ```
-
 ## Question 5
 
 ### (a)
 
 ```code
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.json());
-app.use(express.urlencoded());
-app.post('/tours/add', (req, res) => {
-    data.push(req.body);
-    console.log(req.body);
-    res.json(req.body);
-})
-```
-### (b)
 
-![5b](images/5b.png)
-
-```code
-const request_promise = require('request-promise-native'); 
 const fetch = require("node-fetch");
 
-let site = { 
-    uri: 'http://127.43.43.8:1111/tours', 
-    json: true 
-}; 
-fetch("http://127.43.43.8:1111/tours/add", {
+fetch("http://127.43.43.8:1111/login", {
     method: 'POST',
-    body: JSON.stringify({Name: 'new!', Date: 'unknow!'}),
+    body: JSON.stringify({email: "sided1830@outlook.com", password: 'C}m8\"L,F'}),
     headers: { "Content-Type": "application/json" }
   }).then((res) => res.json())
-  .then((data) => console.log(data))
-  .catch((err) => console.log(err))   
-request_promise(site).then(function(data){ 
-    data.map((element, index) => {
-        console.log(`Tour ${index+1} name ${element.Name}, date: ${element.Date}`);
-})});
+  .then((data) => {
+    console.log('');
+    console.log('Good email, good password: ');
+    console.log(data);
+  })
+  .catch((err) => console.log(err))
+
+fetch("http://127.43.43.8:1111/login", {
+    method: 'POST',
+    body: JSON.stringify({email: "sided1830@outlook.com", password: 'KC}m8\"L,F'}),
+    headers: { "Content-Type": "application/json" }
+  }).then((res) => res.json())
+  .then((data) => {
+    console.log('');
+    console.log('Good email, incorrect password: Code 401: ')
+    console.log(data);
+  })
+  .catch((err) => console.log(err))
+
+fetch("http://127.43.43.8:1111/login", {
+    method: 'POST',
+    body: JSON.stringify({email: "Ksided1830@outlook.com", password: 'C}m8\"L,F'}),
+    headers: { "Content-Type": "application/json" }
+  }).then((res) => res.json())
+  .then((data) => {
+    console.log('');
+    console.log('Bad email (user not found): Code 401: ')
+    console.log(data);
+  })
+  .catch((err) => console.log(err))
 ```
+![5](images/5.png)
