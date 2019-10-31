@@ -48,9 +48,9 @@ Users should not use the same passwords for different websites because if one of
 
 (i) Two-factor authentication is a security process in which the users provide two different authentication factors to verify themselves.
 
-Example: when withdrawing of money from an ATM, user must use a correct bank card (something the user has) and a correct PIN (something the user knows).
+(ii) Example: when withdrawing of money from an ATM, user must use a correct bank card (something the user has) and a correct PIN (something the user knows).
 
-It is not hackproof. It just provides stronger authentication.
+(iii) It is not hackproof. It just provides stronger authentication.
 
 ### (c)
 
