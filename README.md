@@ -2,163 +2,65 @@
 
 **NetID**: sq9943
 
-# Homework #7 Solutions
+# Homework #8 Solutions
 
 ## Question 1 
-### (a)
+### (a) Confidentiality
 
-What HTTP Method is used in the request?
+(i) Confidentiality refers to protecting information from being accessed by unauthorized parties. In other words, only the people who are authorized to do so can gain access to sensitive data. (from lecture and MDN)
 
-GET
+(ii) An example
+Capital One has announced that nearly 106 million customer accounts and credit card applications have been compromised.
 
+Breach announced: August 4, 2019
 
-What is the response code and what does it mean?
+Breach Period: 2005-March 23, 2019
 
-200 OK - the request has succeeded
+Description of the breach: Capital One has announced that many of their customers’ Social Security numbers, Canadian Social Insurance numbers, bank account numbers, names, addresses, credit scores, credit limits, and account balances have been compromised. No login credentials were exposed in the breach.
 
+(iii) A breach of confidentiality
 
-What version of HTTP is being used?
+### (b) Integrity
 
-HTTP/1.1
+(i) We need to ensure that software is not altered, and that the source of the software is genuine.
 
-### (b)
+(ii) To assure the integrity of some of the open source software:
 
-Host: bb.csueastbay.edu
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0) Gecko/20100101 Firefox/60.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br
-Cookie: __utma=208548673.1534384702.1570070220.1571148140.1571996850.41; __utmz=208548673.1570070220.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _ga=GA1.2.1257877214.1570176796; BbRouter=expires:1571999477,id:F5AC26ED588BB4D7B2FCD6C9E2309FEC,signature:ee8d6355f346978d4a0cb5531ad42d5e87a210a23675996144bfef8c6aeabebd,site:aefdf5db-8c6a-4e8e-8bf7-fb9f1f4dcdf0,v:2,xsrf:eeabd90e-b04c-4071-b961-d85e7abc1560; __utmc=208548673; wl_auth=client_id=00000000481AF445&status=unchecked; AWSELB=D3570BC914533D9ACC5FBEA2A258730F699E691A0ABC1ED62EDAD5455CC53097809BAEF27810D13E1B6171A9A45FB268F2886D59F2857B5EB77FF35146B7D298B9AEF8BA8C; __utmb=208548673.10.10.1571996850; __utmt=1; JSESSIONID=32D6A776DDE822EA8D5662758CEA3EC9
-Connection: keep-alive
-Upgrade-Insecure-Requests: 1
-Cache-Control: max-age=0
-
-### (c)
-
-HTTP/1.1 200 
-Cache-Control: private
-Cache-Control: max-age=0
-Cache-Control: no-store
-Cache-Control: must-revalidate
-Content-Encoding: gzip
-Content-Language: en-US
-Content-Security-Policy: frame-ancestors 'self'
-Content-Type: text/html;charset=UTF-8
-Date: Fri, 25 Oct 2019 10:01:29 GMT
-Expires: Thu, 25 Oct 2018 10:01:29 GMT
-Last-Modified: Mon, 25 Oct 1999 10:01:29 GMT
-P3P: CP="CAO PSA OUR"
-Pragma: private
-Server: openresty/1.9.3.1
-Set-Cookie: BbRouter=expires:1571999489,id:F5AC26ED588BB4D7B2FCD6C9E2309FEC,signature:771f968b01dbc998c7d916051b9dba4b2ab7b4eae8e6d988e1dc6a58e482ca47,site:aefdf5db-8c6a-4e8e-8bf7-fb9f1f4dcdf0,v:2,xsrf:eeabd90e-b04c-4071-b961-d85e7abc1560; Path=/; Secure; HttpOnly
-Vary: Accept-Encoding
-X-Blackboard-appserver: ip-10-145-51-206.ec2.internal
-X-Blackboard-product: Blackboard Learn &#8482; 3700.11.0-rel.17+dca4b12
-X-Frame-Options: SAMEORIGIN
-Content-Length: 17359
-Connection: keep-alive
-
-### (d)
-
-What server is BlackBoard based on?
-
-openresty/1.9.3.1
+- Using digital signature
+- Using File Integrity Monitoring software to monitor changes in files.
 
 
-Are any cookies set? If so what are they.
 
-Set-Cookie: BbRouter=expires:1571999489,id:F5AC26ED588BB4D7B2FCD6C9E2309FEC,signature:771f968b01dbc998c7d916051b9dba4b2ab7b4eae8e6d988e1dc6a58e482ca47,site:aefdf5db-8c6a-4e8e-8bf7-fb9f1f4dcdf0,v:2,xsrf:eeabd90e-b04c-4071-b961-d85e7abc1560; Path=/; Secure; HttpOnly
+### (c) Availability
 
-### (e)
+(i) Denial-of-service attack (DoS attack)
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_Types#Comments
-
-protocol: https
-
-domain: mozilla.org
-
-port:
-
-path: /en-US/docs/Web/JavaScript/Guide/Grammar_and_Types
-
-query:
-
-fragment: Comments
-
-
-https://www.google.com/search?q=gaia+mission&rlz=1CYPO_enUS751
-
-protocol: https
-
-domain: google.com
-
-port:
-
-path: /search
-
-query: q=gaia+mission&rlz=1CYPO_enUS751
-
-fragment:
-
-
-http://127.0.0.2:8282/static/index.html
-
-protocol: http
-
-domain: 127.0.0.2
-
-port: 8282
-
-path: /static/index.html
-
-query:
-
-fragment:
+(ii) Yes. Because it can disrupt the service.
 
 ## Question 2
 ### (a)
 
-![2a](images/2a.png)
+(i) Credential stuffing is a type of cyberattack where stolen account credentials typically consisting of lists of usernames and/or email addresses and the corresponding passwords are used to gain unauthorized access to user accounts through large-scale automated login requests directed against a web application. (from Wiki)
 
-```javascript
-const request_promise = require('request-promise-native');
-
-let site = {
-    uri: 'https://windsurf.grotto-networking.com/data/logs/windEvents2013.json', 
-    json: true 
-};
-    
-request_promise(site).then(function(data){ 
-    let max10sec = data.map(m => m.max10sec); 
-    let distance = data.map(d => d.distance); 
-    let s = max10sec.reduce((accumulator, currentValue) => {return Math.max(accumulator, currentValue)}); 
-    let d = distance.reduce((accumulator, currentValue) => {return Math.max(accumulator, currentValue)}); 
-    console.log(`The number of sailing sessions in 2013 was: ${data.length}`);
-    console.log(`The fastest 10 second speed average was: ${s}`); 
-    console.log(`The longest single day distance was: ${d}`); 
-})
-```
+Users should not use the same passwords for different websites because if one of these website is attacked, hacker can use the user data from that website to gain access to other websites. 
 
 ### (b)
 
-![2b](images/2b.png)
+(i) Two-factor authentication is a security process in which the users provide two different authentication factors to verify themselves.
+
+Example: when withdrawing of money from an ATM, user must use a correct bank card (something the user has) and a correct PIN (something the user knows).
+
+It is not hackproof. It just provides stronger authentication.
 
 ### (c)
 
-![2c](images/2c.png)
+(i) Example: CSUEB BlackBoard. This system has the access control for different roles: admin, student, teacher, grader, staffs. Each role has specific views and access level.
 
-```javascript
-const request_promise = require('request-promise-native'); 
+(ii) Role Based Access Control (RBAC) is a method of restricting network access based on the roles of individual users within an enterprise. RBAC lets users have access rights only to the information they need to do their jobs and prevents them from accessing information that doesn't pertain to them. (from techtarget.com)
 
-let site = { 
-    uri: 'https://windsurf.grotto-networking.com/data/tracks/track_2013_10_28.json', 
-    json: true }; 
-    
-request_promise(site).then(function(data){ 
-console.log(`The start time of track_2013_10_28 was: ${data.start_time}`);
-console.log(`The session lasted ${data.points.length/60} minutes`);
-})
-```
+### (d)
+
+It is important to keep logs of various activities associated with the web app because it's helpful in identifying critical network issues, malicious attacks on the system, or some other suspicious system activities like unauthorized logins, login failures, and errors on network devices.
 
 ## Question 3
 ### (a)
