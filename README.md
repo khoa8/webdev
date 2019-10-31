@@ -119,21 +119,18 @@ app.post('/login', function (req, res) {
     if (user) {
     	let verified = bcrypt.compareSync(password, user.passHash);
     	if (verified) {
-    	res.json({
-        "firstName": user.firstName,
-        "lastName" : user.lastName,
-        "email": user.email,
-        "role": user.role
-    });
-        res.end();
-    } else {
-        res.status(401).json({error: true, message: "User/Password error"});
+    	    res.json({
+            "firstName": user.firstName,
+            "lastName" : user.lastName,
+            "email": user.email,
+            "role": user.role
+            });
+        } else {
+            res.status(401).json({error: true, message: "Password error"});
     	}
-	}
-    else {
-        res.status(401).json({error: true, message: "User/Password error"});
-    }
-    
+	} else {
+        res.status(401).json({error: true, message: "User error"});
+    }   
 });
 ```
 ## Question 5
