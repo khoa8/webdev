@@ -74,7 +74,7 @@ hashedUsers = users.map(data =>{
         "firstName": data.firstName,
         "lastName" : data.lastName,
         "email": data.email,
-        "password": passHash,
+        "passHash": passHash,
         "role": data.role
     };
  
@@ -86,14 +86,14 @@ hashedUsers = users.map(data =>{
     "firstName": "Arlen",
     "lastName": "Melton",
     "email": "sided1830@outlook.com",
-    "password": "$2a$10$wLw5wfjKqOuyQUgj9V6BLORXXaih.3FwMYNbCMwvwqn4ZOrYRF8C.",
+    "passHash": "$2a$10$wLw5wfjKqOuyQUgj9V6BLORXXaih.3FwMYNbCMwvwqn4ZOrYRF8C.",
     "role": "admin"
   },
   {
     "firstName": "Luna",
     "lastName": "Munoz",
     "email": "sylvan2059@live.com",
-    "password": "$2a$10$4SEhyH8knJg5kaA6z7zeROg2UVw6fAYhtzsDy2dzHc6MPj35P9k32",
+    "passHash": "$2a$10$4SEhyH8knJg5kaA6z7zeROg2UVw6fAYhtzsDy2dzHc6MPj35P9k32",
     "role": "customer"
   }
 ```
