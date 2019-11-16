@@ -2,40 +2,50 @@
 
 **NetID**: sq9943
 
-# Homework #8 Solutions
+# Homework #9 Solutions
 
 ## Question 1 
-### (a) Confidentiality
+### (a) 
 
-(i) Confidentiality refers to protecting information from being accessed by unauthorized parties. In other words, only the people who are authorized to do so can gain access to sensitive data. (from lecture and MDN)
+```code
+const DataStore = require('nedb-promises');
+const db = DataStore.create(__dirname + '/usersDB');
+const users = require('./users.json');
 
-(ii) An example
-Capital One has announced that nearly 106 million customer accounts and credit card applications have been compromised.
+async function initialize() {
+    try {
+        let numRemoved = await db.remove({}, {multi: true});
+        console.log(`Cleanup, removed ${numRemoved} users`);
+        let newDocs = await db.insert(users);
+        console.log(`Added ${newDocs.length} users`);
+    } catch (err) {
+        console.log(`Database error: ${err}`);
+    }
+}
 
-Breach announced: August 4, 2019
+initialize();
+```
 
-Breach Period: 2005-March 23, 2019
+### (b)
 
-Description of the breach: Capital One has announced that many of their customers’ Social Security numbers, Canadian Social Insurance numbers, bank account numbers, names, addresses, credit scores, credit limits, and account balances have been compromised. No login credentials were exposed in the breach.
+```code
+const DataStore = require('nedb-promises');
+const db = DataStore.create(__dirname + '/toursDB');
+const tours = require('./tours.json');
 
-(iii) A breach of confidentiality
+async function initialize() {
+    try {
+        let numRemoved = await db.remove({}, {multi: true});
+        console.log(`Cleanup, removed ${numRemoved} tours`);
+        let newDocs = await db.insert(tours);
+        console.log(`Added ${newDocs.length} tours`);
+    } catch (err) {
+        console.log(`Database error: ${err}`);
+    }
+}
 
-### (b) Integrity
-
-(i) We need to ensure that software is not altered, and that the source of the software is genuine.
-
-(ii) To assure the integrity of some of the open source software:
-
-- Using digital signature
-- Using File Integrity Monitoring software to monitor changes in files.
-
-
-
-### (c) Availability
-
-(i) Denial-of-service attack (DoS attack)
-
-(ii) Yes. Because it can disrupt the service.
+initialize();
+```
 
 ## Question 2
 ### (a)
