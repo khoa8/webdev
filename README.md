@@ -49,10 +49,19 @@ initialize();
 
 ## Question 2
 ### (a)
-
-(i) Credential stuffing is a type of cyberattack where stolen account credentials typically consisting of lists of usernames and/or email addresses and the corresponding passwords are used to gain unauthorized access to user accounts through large-scale automated login requests directed against a web application. (from Wiki)
-
-Users should not use the same passwords for different websites because if one of these website is attacked, hacker can use the user data from that website to gain access to other websites. 
+```code
+app.get('/tours', function (req, res) {
+    db.find({}, function(err, docs) {
+    if (err) {
+        console.log("something is wrong");
+    } else {
+        console.log("We found " + docs.length + " documents");
+        console.log(docs);
+        res.json(docs);
+    }
+    });
+});
+```
 
 ### (b)
 

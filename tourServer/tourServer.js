@@ -1,48 +1,30 @@
 const express = require('express');
-const data = require('./userTourHash.json');
-//const data1 = require('./tours.json');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
-
+// const DataStore = require('nedb-promises');
+// const db = DataStore.create(__dirname + '/toursDB');
+const DataStore = require('nedb');
+const db = new DataStore({filename: __dirname + '/toursDB', autoload: true});
 const app = express();
 const port = 1111;
 const host = '127.43.43.8';
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.json());
-app.use(express.urlencoded());
 
-// app.post('/tours/add', (req, res) => {
-//     data1.push(req.body);
-//     console.log(req.body);
-//     res.json(req.body);
-// })
-
-
-app.post('/login', function (req, res) {
-    console.log(req.body);
-    let email = req.body.email;
-    let password = req.body.password;
-    let user = data.find( u => {
-        return u.email === email
+app.get('/tours', function (req, res) {
+    db.find({}, function(err, docs) {
+    if (err) {
+        console.log("something is wrong");
+    } else {
+        console.log("We found " + docs.length + " documents");
+        console.log(docs);
+        res.json(docs);
+    }
     });
-    if (user) {
-    	let verified = bcrypt.compareSync(password, user.passHash);
-    	if (verified) {
-    	    res.json({
-            "firstName": user.firstName,
-            "lastName" : user.lastName,
-            "email": user.email,
-            "role": user.role
-            });
-        } else {
-            res.status(401).json({error: true, message: "Password error"});
-    	}
-	} else {
-        res.status(401).json({error: true, message: "User error"});
-    }   
 });
 
-//app.get('/tours', (req, res) => res.send(data))
+// app.post('/tours/add', express.json(), function(req, res) {
+// let tour = req.body;
+// console.log(JSON.stringify(tour));
+// tours.virtTours.push(tour);
+// res.json(tours.virtTours);
+// })
+
 
 app.listen(port, host,  () => console.log(`TourServer listening on IPv4: ${host}:${port}`))
