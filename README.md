@@ -84,49 +84,37 @@ app.post('/addTours', express.json(), async (req, res) => {
 
 ![2c](images/2c.png)
 
-### (d)
-
-It is important to keep logs of various activities associated with the web app because it's helpful in identifying critical network issues, malicious attacks on the system, or some other suspicious system activities like unauthorized logins, login failures, and errors on network devices.
-
 ## Question 3
 ### (a)
 
 ```code
-hashedUsers = users.map(data =>{
-    let salt = bcrypt.genSaltSync(nRounds);
-    let passHash = bcrypt.hashSync(data.password, salt);
+const session = require('express-session');
+const cookieName = "sq9943";
+app.use(session({
+    secret: 'khoa',
+    resave: false,
+    saveUninitialized: false,
+    name: cookieName
+}));
 
-    return {
-        "firstName": data.firstName,
-        "lastName" : data.lastName,
-        "email": data.email,
-        "passHash": passHash,
-        "role": data.role
+const setUpSessionMiddleware = (req, res, next) => {
+    console.log(`session object: ${JSON.stringify(req.session)}`);
+    console.log(`session id: ${req.session.id}`);
+    if (!req.session.user) {
+        req.session.user = {role: "guest"};
     };
- 
-});
-```
+    next();
+};
 
-```code
-{
-    "firstName": "Arlen",
-    "lastName": "Melton",
-    "email": "sided1830@outlook.com",
-    "passHash": "$2a$10$wLw5wfjKqOuyQUgj9V6BLORXXaih.3FwMYNbCMwvwqn4ZOrYRF8C.",
-    "role": "admin"
-  },
-  {
-    "firstName": "Luna",
-    "lastName": "Munoz",
-    "email": "sylvan2059@live.com",
-    "passHash": "$2a$10$4SEhyH8knJg5kaA6z7zeROg2UVw6fAYhtzsDy2dzHc6MPj35P9k32",
-    "role": "customer"
-  }
+app.use(setUpSessionMiddleware);
 ```
 
 ### (b)
 
 ![3b](images/3b.png)
+
+### (c)
+
 
 ## Question 4
 ### (a)
