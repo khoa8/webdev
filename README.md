@@ -50,32 +50,39 @@ initialize();
 ## Question 2
 ### (a)
 ```code
-app.get('/tours', function (req, res) {
-    db.find({}, function(err, docs) {
-    if (err) {
-        console.log("something is wrong");
-    } else {
-        console.log("We found " + docs.length + " documents");
-        console.log(docs);
-        res.json(docs);
+app.get('/tours', async (req, res) => {
+    try {
+    let find = await db.find({});
+    console.log(`We found ${find.length} documents`);
+    console.log(find);
+    res.json(find);
+    } catch (err) {
+        console.log(`Database error: ${err}`);
     }
-    });
 });
 ```
 
 ### (b)
-
-(i) Two-factor authentication is a security process in which the users provide two different authentication factors to verify themselves.
-
-(ii) Example: when withdrawing of money from an ATM, user must use a correct bank card (something the user has) and a correct PIN (something the user knows).
-
-(iii) It is not hackproof. It just provides stronger authentication.
-
+```code
+app.post('/addTours', express.json(), async (req, res) => {
+    try {
+    let tour = req.body;
+    console.log(JSON.stringify(tour));
+    let newDocs = await db.insert(tour);
+    console.log(`Added tours:`);
+    console.log(newDocs);
+    let find = await db.find({});
+    console.log(`We found ${find.length} documents`);
+    console.log(find);
+    res.json(find);
+    } catch (err) {
+        console.log(`Database error: ${err}`);
+    }
+});
+```
 ### (c)
 
-(i) Example: CSUEB BlackBoard. This system has the access control for different roles: admin, student, teacher, grader, staffs. Each role has specific views and access level.
-
-(ii) Role Based Access Control (RBAC) is a method of restricting network access based on the roles of individual users within an enterprise. RBAC lets users have access rights only to the information they need to do their jobs and prevents them from accessing information that doesn't pertain to them. (from techtarget.com)
+![2c](images/2c.png)
 
 ### (d)
 
