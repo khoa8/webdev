@@ -119,15 +119,15 @@ app.use(setUpSessionMiddleware);
 app.post('/login', express.json(), async (req, res) => {
     try {
     console.log(req.body);
-    let email = req.body.email;
-    let password = req.body.password;
+    let Email = req.body.email;
+    let Password = req.body.password;
     
-    let auser = await db2.find({email});
+    let auser = await db2.findOne({email: Email});
     if (!auser) {
         res.status(401).json({error: true, message: "User/Password error"});
         return;
     }
-    if (password === auser.password) {
+    if (Password === auser.password) {
         let oldInfo = req.session.user;
         req.session.regenerate(function (err) {
             if (err) {console.log(err);
