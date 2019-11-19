@@ -173,7 +173,8 @@ let tourSite = {
 
 let logout = { 
     uri: 'http://127.43.43.8:1111/logout', 
-    json: true 
+    json: true,
+    jar: cookieJar
 }; 
 
 let loginGood = {
@@ -181,7 +182,8 @@ let loginGood = {
     json: true,
     method: "POST",
     body: {"email": "sylvan2059@live.com",
-    "password": "1wQX_lYt"}
+    "password": "1wQX_lYt"},
+    jar: cookieJar
 };
 
 let loginBadEmail = {
@@ -189,7 +191,8 @@ let loginBadEmail = {
     json: true,
     method: "POST",
     body: {"email": "sylvan205@live.com",
-    "password": "1wQX_lYt"}
+    "password": "1wQX_lYt"},
+    jar: cookieJar
 };
 
 let loginBadPass = {
@@ -197,38 +200,42 @@ let loginBadPass = {
     json: true,
     method: "POST",
     body: {"email": "sylvan2059@live.com",
-    "password": "2wQX_lYt"}
+    "password": "2wQX_lYt"},
+    jar: cookieJar
 };
 
 
 async function someTests() {
-    let res;
+    let res1, res2, res3;
     try {
-        res = await rp(tourSite);
+        console.log(`TEST 1:\n`);
+        res1 = await rp(tourSite);
         console.log(`cookies: ${cookieJar.getCookieString(tourSite.uri)}`);
-        res = await rp(loginGood);
-        console.log(`Good login test result: ${JSON.stringify(res)}\n`);
+        res2 = await rp(loginGood);
+        console.log(`Good login test result: ${JSON.stringify(res2)}\n`);
         console.log(`cookies: ${cookieJar.getCookieString(loginGood.uri)}`);
-        res = await rp(logout);
-        console.log(`Logout result: ${JSON.stringify(res)}\n`);
+        res3 = await rp(logout);
+        console.log(`Logout result: ${JSON.stringify(res3)}\n`);
         console.log(`cookies: ${cookieJar.getCookieString(logout.uri)}`);
     } catch (error) {
     console.log(`Good login error: ${error}\n`);
     }
     try {
-        res = await rp(tourSite);
+        console.log(`TEST 2:\n`);
+        res1 = await rp(tourSite);
         console.log(`cookies: ${cookieJar.getCookieString(tourSite.uri)}`);
-        res = await rp(loginBadEmail);
-        console.log(`Bad email login test result: ${JSON.stringify(res)}\n`);
+        res2 = await rp(loginBadEmail);
+        console.log(`Bad email login test result: ${JSON.stringify(res2)}\n`);
         console.log(`cookies: ${cookieJar.getCookieString(loginBadEmail.uri)}`);
     } catch (error) {
     console.log(`Bad email login error: ${error}`);
     }
     try {
-        res = await rp(tourSite);
+        console.log(`TEST 3:\n`);
+        res1 = await rp(tourSite);
         console.log(`cookies: ${cookieJar.getCookieString(tourSite.uri)}`);
-        res = await rp(loginBadPass);
-        console.log(`Bad password login test result: ${JSON.stringify(res)}\n`);
+        res2 = await rp(loginBadPass);
+        console.log(`Bad password login test result: ${JSON.stringify(res2)}\n`);
         console.log(`cookies: ${cookieJar.getCookieString(loginBadPass.uri)}`);
     } catch (error) {
     console.log(`Bad password login error: ${error}\n`);
@@ -237,6 +244,9 @@ async function someTests() {
 
 someTests();
 ```
+
+![3e](images/3e.png)
+
 
 ## Question 4
 ### (a)

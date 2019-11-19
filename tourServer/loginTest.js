@@ -8,7 +8,8 @@ let tourSite = {
 
 let logout = { 
     uri: 'http://127.43.43.8:1111/logout', 
-    json: true 
+    json: true,
+    jar: cookieJar
 }; 
 
 let loginGood = {
@@ -16,7 +17,8 @@ let loginGood = {
     json: true,
     method: "POST",
     body: {"email": "sylvan2059@live.com",
-    "password": "1wQX_lYt"}
+    "password": "1wQX_lYt"},
+    jar: cookieJar
 };
 
 let loginBadEmail = {
@@ -24,7 +26,8 @@ let loginBadEmail = {
     json: true,
     method: "POST",
     body: {"email": "sylvan205@live.com",
-    "password": "1wQX_lYt"}
+    "password": "1wQX_lYt"},
+    jar: cookieJar
 };
 
 let loginBadPass = {
@@ -32,7 +35,8 @@ let loginBadPass = {
     json: true,
     method: "POST",
     body: {"email": "sylvan2059@live.com",
-    "password": "2wQX_lYt"}
+    "password": "2wQX_lYt"},
+    jar: cookieJar
 };
 
 
