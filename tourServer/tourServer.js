@@ -26,6 +26,14 @@ const setUpSessionMiddleware = (req, res, next) => {
     next();
 };
 
+const checkAdminMiddleware = (req, res, next) => {
+    if (req.session.user.role !== "admin") {
+        res.status(403).json({error: "Forbidden/Not permitted"});
+    } else {
+        next();
+    }
+};
+
 app.use(setUpSessionMiddleware);
 
 app.get('/tours', async (req, res) => {
@@ -39,11 +47,11 @@ app.get('/tours', async (req, res) => {
     }
 });
 
-app.post('/addTours', express.json(), async (req, res) => {
+app.post('/addTours', checkAdminMiddleware, express.json(), async (req, res) => {
     try {
     let tour = req.body;
     console.log(JSON.stringify(tour));
-    let newDocs = await db.insert(tour);
+    let newDocs = db.insert(tour);
     console.log(`Added tours:`);
     console.log(newDocs);
     let find = await db.find({});
