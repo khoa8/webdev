@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const DataStore = require('nedb-promises');
 const db = DataStore.create(__dirname + '/toursDB');
+const db2 = DataStore.create(__dirname + '/usersDB');
 // const DataStore = require('nedb');
 // const db = new DataStore({filename: __dirname + '/toursDB', autoload: true});
 const app = express();
@@ -54,5 +55,45 @@ app.post('/addTours', express.json(), async (req, res) => {
     }
 });
 
+
+app.post('/login', express.json(), async (req, res) => {
+    try {
+    console.log(req.body);
+    let email = req.body.email;
+    let password = req.body.password;
+    
+    let auser = await db2.find({email});
+    if (!auser) {
+        res.status(401).json({error: true, message: "User/Password error"});
+        return;
+    }
+    if (password === auser.password) {
+        let oldInfo = req.session.user;
+        req.session.regenerate(function (err) {
+            if (err) {console.log(err);
+            }
+        let newUserInfo = Object.assign(oldInfo, auser);
+        delete newUserInfo.password;
+        req.session.user = newUserInfo;
+        res.json(newUserInfo);
+    });
+    } else {
+        res.status(401).json({error: true, message: "User/Password error"});
+    }
+    } catch (err) {
+        console.log(`Database error: ${err}`);
+    }
+});
+
+app.get('/logout', (req, res) => {
+    let options = req.session.cookie;
+    req.session.destroy(function (err) {
+        if (err) {
+            console.log(err);
+        }
+        res.clearCookie(cookieName, options);
+        res.json({message: "Goodbye"});
+    })
+});
 
 app.listen(port, host,  () => console.log(`TourServer listening on IPv4: ${host}:${port}`))
