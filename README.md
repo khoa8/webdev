@@ -160,80 +160,87 @@ app.get('/logout', function (req, res) {
     })
 });
 ```
+### (e)
+
+```code
+const rp = require('request-promise-native');
+const cookieJar = rp.jar();
+let tourSite = {
+    uri: 'http://127.43.43.8:1111/tours',
+    json: true,
+    jar: cookieJar
+};
+
+let logout = { 
+    uri: 'http://127.43.43.8:1111/logout', 
+    json: true 
+}; 
+
+let loginGood = {
+    uri: 'http://127.43.43.8:1111/login',
+    json: true,
+    method: "POST",
+    body: {"email": "sylvan2059@live.com",
+    "password": "1wQX_lYt"}
+};
+
+let loginBadEmail = {
+    uri: 'http://127.43.43.8:1111/login',
+    json: true,
+    method: "POST",
+    body: {"email": "sylvan205@live.com",
+    "password": "1wQX_lYt"}
+};
+
+let loginBadPass = {
+    uri: 'http://127.43.43.8:1111/login',
+    json: true,
+    method: "POST",
+    body: {"email": "sylvan2059@live.com",
+    "password": "2wQX_lYt"}
+};
+
+
+async function someTests() {
+    let res;
+    try {
+        res = await rp(tourSite);
+        console.log(`cookies: ${cookieJar.getCookieString(tourSite.uri)}`);
+        res = await rp(loginGood);
+        console.log(`Good login test result: ${JSON.stringify(res)}\n`);
+        console.log(`cookies: ${cookieJar.getCookieString(loginGood.uri)}`);
+        res = await rp(logout);
+        console.log(`Logout result: ${JSON.stringify(res)}\n`);
+        console.log(`cookies: ${cookieJar.getCookieString(logout.uri)}`);
+    } catch (error) {
+    console.log(`Good login error: ${error}\n`);
+    }
+    try {
+        res = await rp(tourSite);
+        console.log(`cookies: ${cookieJar.getCookieString(tourSite.uri)}`);
+        res = await rp(loginBadEmail);
+        console.log(`Bad email login test result: ${JSON.stringify(res)}\n`);
+        console.log(`cookies: ${cookieJar.getCookieString(loginBadEmail.uri)}`);
+    } catch (error) {
+    console.log(`Bad email login error: ${error}`);
+    }
+    try {
+        res = await rp(tourSite);
+        console.log(`cookies: ${cookieJar.getCookieString(tourSite.uri)}`);
+        res = await rp(loginBadPass);
+        console.log(`Bad password login test result: ${JSON.stringify(res)}\n`);
+        console.log(`cookies: ${cookieJar.getCookieString(loginBadPass.uri)}`);
+    } catch (error) {
+    console.log(`Bad password login error: ${error}\n`);
+    }
+}
+
+someTests();
+```
 
 ## Question 4
 ### (a)
 
 ```code
-const data = require('./userTourHash.json');
-const bcrypt = require('bcryptjs');
 
-app.post('/login', function (req, res) {
-    console.log(req.body);
-    let email = req.body.email;
-    let password = req.body.password;
-    let user = data.find( u => {
-        return u.email === email
-    });
-    if (user) {
-    	let verified = bcrypt.compareSync(password, user.passHash);
-    	if (verified) {
-    	    res.json({
-            "firstName": user.firstName,
-            "lastName" : user.lastName,
-            "email": user.email,
-            "role": user.role
-            });
-        } else {
-            res.status(401).json({error: true, message: "Password error"});
-    	}
-	} else {
-        res.status(401).json({error: true, message: "User error"});
-    }   
-});
 ```
-## Question 5
-
-### (a)
-
-```code
-
-const fetch = require("node-fetch");
-
-fetch("http://127.43.43.8:1111/login", {
-    method: 'POST',
-    body: JSON.stringify({email: "sided1830@outlook.com", password: 'C}m8\"L,F'}),
-    headers: { "Content-Type": "application/json" }
-  }).then((res) => res.json())
-  .then((data) => {
-    console.log('');
-    console.log('Good email, good password: ');
-    console.log(data);
-  })
-  .catch((err) => console.log(err))
-
-fetch("http://127.43.43.8:1111/login", {
-    method: 'POST',
-    body: JSON.stringify({email: "sided1830@outlook.com", password: 'KC}m8\"L,F'}),
-    headers: { "Content-Type": "application/json" }
-  }).then((res) => res.json())
-  .then((data) => {
-    console.log('');
-    console.log('Good email, incorrect password: Code 401: ')
-    console.log(data);
-  })
-  .catch((err) => console.log(err))
-
-fetch("http://127.43.43.8:1111/login", {
-    method: 'POST',
-    body: JSON.stringify({email: "Ksided1830@outlook.com", password: 'C}m8\"L,F'}),
-    headers: { "Content-Type": "application/json" }
-  }).then((res) => res.json())
-  .then((data) => {
-    console.log('');
-    console.log('Bad email (user not found): Code 401: ')
-    console.log(data);
-  })
-  .catch((err) => console.log(err))
-```
-![5](images/5.png)
