@@ -51,7 +51,7 @@ app.post('/addTours', checkAdminMiddleware, express.json(), async (req, res) => 
     try {
     let tour = req.body;
     console.log(JSON.stringify(tour));
-    let newDocs = db.insert(tour);
+    let newDocs = await db.insert(tour);
     console.log(`Added tours:`);
     console.log(newDocs);
     let find = await db.find({});

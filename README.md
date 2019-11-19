@@ -315,15 +315,15 @@ async function someTests() {
         console.log(`TEST 1:\n`);
         res1 = await rp(adminlogin);
         console.log(`Admin login test result: ${JSON.stringify(res1)}\n`);
-        console.log(`cookies: ${cookieJar.getCookieString(adminlogin.uri)}`);
+        console.log(`cookies: ${cookieJar.getCookieString(adminlogin.uri)}\n`);
         res2 = await db.find({});
         console.log(`Number of tours: ${res2.length} tours\n`);
-        res3 = await rp(add);
-        res4 = await db.find({});
-        console.log(`After adding, number of tours: ${res4.length} tours\n`);
+        let ps = [rp(add),db.find({})];
+        [res3, res4] = await Promise.all(ps);
+        console.log(`After adding, number of tours: ${res3.length} tours\n`);
         res5 = await rp(logout);
         console.log(`Logout result: ${JSON.stringify(res5)}\n`);
-        console.log(`cookies: ${cookieJar.getCookieString(logout.uri)}`);
+        console.log(`cookies: ${cookieJar.getCookieString(logout.uri)}\n`);
     } catch (error) {
     console.log(`Admin login error: ${error}\n`);
     }
@@ -331,23 +331,24 @@ async function someTests() {
         console.log(`TEST 2:\n`);
         res1 = await rp(custlogin);
         console.log(`Customer login test result: ${JSON.stringify(res1)}\n`);
-        console.log(`cookies: ${cookieJar.getCookieString(custlogin.uri)}`);
-        res2 = await db.find({});
+        console.log(`cookies: ${cookieJar.getCookieString(custlogin.uri)}\n`);
+        let ps = [rp(tourSite),db.find({})];
+        [res2,res5] = await Promise.all(ps);
         console.log(`Number of tours: ${res2.length} tours\n`);
         res3 = await rp(add);
         res4 = await rp(logout);
         console.log(`Logout result: ${JSON.stringify(res4)}\n`);
-        console.log(`cookies: ${cookieJar.getCookieString(logout.uri)}`);
+        console.log(`cookies: ${cookieJar.getCookieString(logout.uri)}\n`);
     } catch (error) {
     console.log(`Customer add tour error: ${error}`);
     }
     try {
         console.log(`TEST 3:\n`);
-        res1 = await rp(tourSite);
-        console.log(`cookies: ${cookieJar.getCookieString(tourSite.uri)}`);
-        res2 = await db.find({});
-        console.log(`Number of tours: ${res2.length} tours\n`);
-        res2 = await rp(add);
+        let ps = [rp(tourSite),db.find({})];
+        [res1,res2] = await Promise.all(ps);
+        console.log(`cookies: ${cookieJar.getCookieString(tourSite.uri)}\n`);
+        console.log(`Number of tours: ${res1.length} tours\n`);
+        res3 = await rp(add);
     } catch (error) {
     console.log(`Guest add tour error: ${error}\n`);
     }
@@ -355,3 +356,5 @@ async function someTests() {
 
 someTests();
 ```
+
+![4b](images/4b.png)
