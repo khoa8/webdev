@@ -35,7 +35,7 @@ HTTP POST
 
 Success: 201 (CREATED)
 
-Error:
+Error: 400 (BAD REQUEST)
 
 Roles: admin
 
@@ -66,19 +66,48 @@ Roles: admin
 ## Question 2
 
 ### (a) Allow a user to see all the tours they are signed up for
+HTTP GET
 
+/users/{userId}/signed-up-tours
+
+Success: 200 (OK)
+
+Error: 404 (NOT FOUND)
+
+Role: customer
 
 ### (b) Allow a user to signup (only themselves) for a tour (if there is room)
+HTTP POST
 
+/users/{userId}/signed-up-tours
+
+Success: 201 (CREATE)
+
+Error: 400 (BAD REQUEST)
+
+Role: customer
 
 ### (c) Allow a user to remove themselves from a tour (only themselves, if they are signed up)
+HTTP DELETE
 
+/users/{userId}/signed-up-tours/{tourId}
+
+Success: 200 (OK)
+
+Error: 404 (NOT FOUND)
+
+Role: customer
 
 ### (d) Get all the customers signed up on a particular tour
+HTTP GET
 
+/users/{adminId}/tours/{tourId}/signed-up-customers
 
+Success: 200 (OK)
 
-![2c](images/2c.png)
+Error: 404 (NOT FOUND)
+
+Role: admin
 
 ## Question 3
 ### (a)
