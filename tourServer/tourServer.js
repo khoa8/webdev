@@ -3,11 +3,8 @@ const session = require('express-session');
 const DataStore = require('nedb-promises');
 const db = DataStore.create(__dirname + '/toursDB');
 const db2 = DataStore.create(__dirname + '/usersDB');
-// const DataStore = require('nedb');
-// const db = new DataStore({filename: __dirname + '/toursDB', autoload: true});
-const app = express();
-const port = 1111;
-const host = '127.43.43.8';
+
+let app = express();
 
 const cookieName = "sq9943";
 app.use(session({
@@ -104,4 +101,4 @@ app.get('/logout', (req, res) => {
     })
 });
 
-app.listen(port, host,  () => console.log(`TourServer listening on IPv4: ${host}:${port}`))
+module.exports = app;
