@@ -15,8 +15,8 @@ app.use(session({
 }));
 
 const setUpSessionMiddleware = (req, res, next) => {
-    console.log(`session object: ${JSON.stringify(req.session)}`);
-    console.log(`session id: ${req.session.id}`);
+    //console.log(`session object: ${JSON.stringify(req.session)}`);
+    //console.log(`session id: ${req.session.id}`);
     if (!req.session.user) {
         req.session.user = {role: "guest"};
     };
@@ -36,8 +36,8 @@ app.use(setUpSessionMiddleware);
 app.get('/tours', async (req, res) => {
     try {
     let find = await db.find({});
-    console.log(`We found ${find.length} documents`);
-    console.log(find);
+    //console.log(`We found ${find.length} documents`);
+    //console.log(find);
     res.json(find);
     } catch (err) {
         console.log(`Database error: ${err}`);
@@ -63,7 +63,7 @@ app.post('/addTours', checkAdminMiddleware, express.json(), async (req, res) => 
 
 app.post('/login', express.json(), async (req, res) => {
     try {
-    console.log(req.body);
+    //console.log(req.body);
     let Email = req.body.email;
     let Password = req.body.password;
     
