@@ -2,85 +2,81 @@
 
 **NetID**: sq9943
 
-# Homework #9 Solutions
+# Homework #10 Solutions
 
 ## Question 1 
-### (a) 
 
-```code
-const DataStore = require('nedb-promises');
-const db = DataStore.create(__dirname + '/usersDB');
-const users = require('./users.json');
+### (a) See all tours
+HTTP GET
 
-async function initialize() {
-    try {
-        let numRemoved = await db.remove({}, {multi: true});
-        console.log(`Cleanup, removed ${numRemoved} users`);
-        let newDocs = await db.insert(users);
-        console.log(`Added ${newDocs.length} users`);
-    } catch (err) {
-        console.log(`Database error: ${err}`);
-    }
-}
+/tours
 
-initialize();
-```
+Success: 200 (OK)
 
-### (b)
+Error: 404 (NOT FOUND), 400 (BAD REQUEST)
 
-```code
-const DataStore = require('nedb-promises');
-const db = DataStore.create(__dirname + '/toursDB');
-const tours = require('./tours.json');
+Roles: guest, admin, customer
 
-async function initialize() {
-    try {
-        let numRemoved = await db.remove({}, {multi: true});
-        console.log(`Cleanup, removed ${numRemoved} tours`);
-        let newDocs = await db.insert(tours);
-        console.log(`Added ${newDocs.length} tours`);
-    } catch (err) {
-        console.log(`Database error: ${err}`);
-    }
-}
+### (b) Get info on a specific tour
+HTTP GET
 
-initialize();
-```
+/tours/{tourId}
+
+Success: 200 (OK)
+
+Error: 404 (NOT FOUND), 400 (BAD REQUEST)
+
+Roles: guest, admin, customer
+
+### (c) Add a new tour
+HTTP POST
+
+/tours
+
+Success: 201 (CREATED)
+
+Error:
+
+Roles: admin
+
+### (d) Edit a tour
+HTTP PUT
+
+/tours/{tourId}
+
+Success: 200 (OK), 204 (NO CONTENT)
+
+Error: 404 (NOT FOUND)
+
+Roles: admin
+
+
+### (e) Delete a tour
+HTTP DELETE
+
+/tours/{tourId}
+
+Success: 200 (OK)
+
+Error: 404 (NOT FOUND)
+
+Roles: admin
+
 
 ## Question 2
-### (a)
-```code
-app.get('/tours', async (req, res) => {
-    try {
-    let find = await db.find({});
-    console.log(`We found ${find.length} documents`);
-    console.log(find);
-    res.json(find);
-    } catch (err) {
-        console.log(`Database error: ${err}`);
-    }
-});
-```
 
-### (b)
-```code
-app.post('/addTours', express.json(), async (req, res) => {
-    try {
-    let tour = req.body;
-    console.log(JSON.stringify(tour));
-    let newDocs = await db.insert(tour);
-    console.log(`Added tours:`);
-    console.log(newDocs);
-    let find = await db.find({});
-    console.log(`We found ${find.length} documents`);
-    console.log(find);
-    res.json(find);
-    } catch (err) {
-        console.log(`Database error: ${err}`);
-    }
-});
-```
-### (c)
+### (a) Allow a user to see all the tours they are signed up for
+
+
+### (b) Allow a user to signup (only themselves) for a tour (if there is room)
+
+
+### (c) Allow a user to remove themselves from a tour (only themselves, if they are signed up)
+
+
+### (d) Get all the customers signed up on a particular tour
+
+
 
 ![2c](images/2c.png)
 
