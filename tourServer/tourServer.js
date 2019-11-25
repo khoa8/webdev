@@ -33,6 +33,16 @@ const checkAdminMiddleware = (req, res, next) => {
 
 app.use(setUpSessionMiddleware);
 
+app.delete('/delete', checkAdminMiddleware, express.json(), async (req, res) => {
+    try {
+    let del = await tourDB.remove({ _id: req.body._id }, {});
+    //console.log(`${JSON.stringify(req.body)}`);
+    res.json(del);
+    } catch (err) {
+        console.log(`Database error: ${err}`);
+    }
+});
+
 app.get('/tours', async (req, res) => {
     try {
     let find = await tourDB.find({});
