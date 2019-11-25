@@ -47,7 +47,7 @@ app.get('/tours', async (req, res) => {
 app.post('/addTours', checkAdminMiddleware, express.json(), async (req, res) => {
     try {
     let tour = req.body;
-    console.log(JSON.stringify(tour));
+    //console.log(JSON.stringify(tour));
     let newDocs = await tourDB.insert(tour);
     console.log(`Added tours:`);
     console.log(newDocs);

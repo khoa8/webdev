@@ -1,7 +1,7 @@
 const tourDB = require('./tourDBRef');
 const tours = require('./tours.json');
 
-async function initialize() {
+async function initDB() {
     try {
         let numRemoved = await tourDB.remove({}, {multi: true});
         console.log(`Cleanup, removed ${numRemoved} tours`);
@@ -12,5 +12,5 @@ async function initialize() {
     }
 }
 
-initialize();
-module.exports = initialize;
+//initDB();
+module.exports = initDB;
