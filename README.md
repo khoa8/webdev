@@ -249,110 +249,62 @@ app.listen(port, host, function () {
 ## Question 4
 ### (a)
 
+![4a](images/4a.png)
+
 ```code
-const checkAdminMiddleware = (req, res, next) => {
-    if (req.session.user.role !== "admin") {
-        res.status(403).json({error: "Forbidden/Not permitted"});
-    } else {
-        next();
-    }
-};
+describe('Get All Tour Tests', function () {
+	let response;
+	let tours = null;
+	before(async function(){
+		response = await request(app).get('/tours');
+	})
+	it('Everything is OK', async function(){
+		assert.equal(response.status, 200);
+	});
+	it('Returns an array', function(){
+		tours = JSON.parse(response.text);
+		assert.isArray(tours);
+	});
+	it('All tour elements have name and date', function(){
+		tours.forEach(function(tour){
+			assert.containsAllKeys(tour, ['Name', 'Date']);
+		});
+	});
+	it('Cookie with appropriate name is returned', function(){
+		let cookies = response.header['set-cookie'].map(cookie.parse);
+		let mycookie = cookies.filter(c => c.hasOwnProperty('sq9943'));
+		assert.notEmpty(mycookie);
+	});
+})
+
+describe('Get an individual tour', function () {
+	let response;
+	let tours = null;
+	before(async function(){
+		response = await request(app).get('/tours');
+	})
+	it('Get an existing tour', async function(){
+		console.log(`Trying path: /tours/ddYg4JaOqthBcHOM`);
+		tours = JSON.parse(response.text);
+		let a = tours.filter(t => t._id === 'ddYg4JaOqthBcHOM' );
+		console.log(a);
+		assert.notEmpty(a);
+	});
+	it('Get another existing tour', function(){
+		console.log(`Trying path: /tours/i8D2bBXR5WJCB97f`);
+		let b = tours.filter(t => t._id === 'i8D2bBXR5WJCB97f' );
+		console.log(b);
+		assert.notEmpty(b);
+	});
+	it('Try getting a non-existing tour', function(){
+		console.log(`Trying path: /tours/nonExistingTourId`);
+		let b = tours.filter(t => t._id === 'nonExistingTourId' );
+		console.log(b);
+		assert.empty(b);
+	});
+})
 ```
 
 ### (b)
-
-```code
-const rp = require('request-promise-native');
-const DataStore = require('nedb-promises');
-const db = DataStore.create(__dirname + '/toursDB');
-const cookieJar = rp.jar();
-
-let tourSite = {
-    uri: 'http://127.43.43.8:1111/tours',
-    json: true,
-    jar: cookieJar
-};
-
-let add = {
-    uri: 'http://127.43.43.8:1111/addTours',
-    json: true,
-    method: "POST",
-    body: {"Name": "NewTour",
-    "Date": "NewDate"},
-    jar: cookieJar
-};
-
-let logout = { 
-    uri: 'http://127.43.43.8:1111/logout', 
-    json: true,
-    jar: cookieJar
-}; 
-
-let adminlogin = {
-    uri: 'http://127.43.43.8:1111/login',
-    json: true,
-    method: "POST",
-    body: {"email": "sided1830@outlook.com",
-    "password": "C}m8\"L,F"},
-    jar: cookieJar
-};
-
-let custlogin = {
-    uri: 'http://127.43.43.8:1111/login',
-    json: true,
-    method: "POST",
-    body: {"email": "sylvan2059@live.com",
-    "password": "1wQX_lYt"},
-    jar: cookieJar
-};
-
-
-async function someTests() {
-    let res1, res2, res3, res4, res5;
-    try {
-        console.log(`TEST 1:\n`);
-        res1 = await rp(adminlogin);
-        console.log(`Admin login test result: ${JSON.stringify(res1)}\n`);
-        console.log(`cookies: ${cookieJar.getCookieString(adminlogin.uri)}\n`);
-        res2 = await db.find({});
-        console.log(`Number of tours: ${res2.length} tours\n`);
-        let ps = [rp(add),db.find({})];
-        [res3, res4] = await Promise.all(ps);
-        console.log(`After adding, number of tours: ${res3.length} tours\n`);
-        res5 = await rp(logout);
-        console.log(`Logout result: ${JSON.stringify(res5)}\n`);
-        console.log(`cookies: ${cookieJar.getCookieString(logout.uri)}\n`);
-    } catch (error) {
-    console.log(`Admin login error: ${error}\n`);
-    }
-    try {
-        console.log(`TEST 2:\n`);
-        res1 = await rp(custlogin);
-        console.log(`Customer login test result: ${JSON.stringify(res1)}\n`);
-        console.log(`cookies: ${cookieJar.getCookieString(custlogin.uri)}\n`);
-        let ps = [rp(tourSite),db.find({})];
-        [res2,res5] = await Promise.all(ps);
-        console.log(`Number of tours: ${res2.length} tours\n`);
-        res3 = await rp(add);
-        res4 = await rp(logout);
-        console.log(`Logout result: ${JSON.stringify(res4)}\n`);
-        console.log(`cookies: ${cookieJar.getCookieString(logout.uri)}\n`);
-    } catch (error) {
-    console.log(`Customer add tour error: ${error}`);
-    }
-    try {
-        console.log(`TEST 3:\n`);
-        let ps = [rp(tourSite),db.find({})];
-        [res1,res2] = await Promise.all(ps);
-        console.log(`cookies: ${cookieJar.getCookieString(tourSite.uri)}\n`);
-        console.log(`Number of tours: ${res1.length} tours\n`);
-        res3 = await rp(add);
-    } catch (error) {
-    console.log(`Guest add tour error: ${error}\n`);
-    }
-}
-
-someTests();
-```
 
 ![4b](images/4b.png)

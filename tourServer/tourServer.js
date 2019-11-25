@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const DataStore = require('nedb-promises');
-const db = DataStore.create(__dirname + '/toursDB');
+const tourDB = require('./tourDBRef');
 const db2 = DataStore.create(__dirname + '/usersDB');
 
 let app = express();
@@ -35,7 +35,7 @@ app.use(setUpSessionMiddleware);
 
 app.get('/tours', async (req, res) => {
     try {
-    let find = await db.find({});
+    let find = await tourDB.find({});
     //console.log(`We found ${find.length} documents`);
     //console.log(find);
     res.json(find);
@@ -48,10 +48,10 @@ app.post('/addTours', checkAdminMiddleware, express.json(), async (req, res) => 
     try {
     let tour = req.body;
     console.log(JSON.stringify(tour));
-    let newDocs = await db.insert(tour);
+    let newDocs = await tourDB.insert(tour);
     console.log(`Added tours:`);
     console.log(newDocs);
-    let find = await db.find({});
+    let find = await tourDB.find({});
     console.log(`We found ${find.length} documents`);
     console.log(find);
     res.json(find);
