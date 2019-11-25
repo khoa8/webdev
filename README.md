@@ -252,6 +252,11 @@ app.listen(port, host, function () {
 ![4a](images/4a.png)
 
 ```code
+const app = require('../tourServer');
+const assert = require('chai').assert;
+const request = require('supertest'); 
+const cookie = require('cookie');
+
 describe('Get All Tour Tests', function () {
 	let response;
 	let tours = null;
