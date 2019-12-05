@@ -2,66 +2,15 @@
 
 **NetID**: sq9943
 
-# Homework #10 Solutions
+# Homework #11 Solutions
 
 ## Question 1 
 
-### (a) See all tours
-HTTP GET
+### (a)
+![1a](images/1a.png)
 
-/tours
-
-Success: 200 (OK)
-
-Error: 404 (NOT FOUND), 400 (BAD REQUEST)
-
-Roles: guest, admin, customer
-
-### (b) Get info on a specific tour
-HTTP GET
-
-/tours/{tourId}
-
-Success: 200 (OK)
-
-Error: 404 (NOT FOUND), 400 (BAD REQUEST)
-
-Roles: guest, admin, customer
-
-### (c) Add a new tour
-HTTP POST
-
-/tours
-
-Success: 201 (CREATED)
-
-Error: 400 (BAD REQUEST)
-
-Roles: admin
-
-### (d) Edit a tour
-HTTP PUT
-
-/tours/{tourId}
-
-Success: 200 (OK), 204 (NO CONTENT)
-
-Error: 404 (NOT FOUND)
-
-Roles: admin
-
-
-### (e) Delete a tour
-HTTP DELETE
-
-/tours/{tourId}
-
-Success: 200 (OK)
-
-Error: 404 (NOT FOUND)
-
-Roles: admin
-
+### (b)
+![1b](images/1b.png)
 
 ## Question 2
 
