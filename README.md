@@ -14,49 +14,30 @@
 
 ## Question 2
 
-### (a) Allow a user to see all the tours they are signed up for
-HTTP GET
-
-/users/{userId}/signed-up-tours
-
-Success: 200 (OK)
-
-Error: 404 (NOT FOUND)
-
-Role: customer
-
-### (b) Allow a user to signup (only themselves) for a tour (if there is room)
-HTTP POST
-
-/users/{userId}/signed-up-tours
-
-Success: 201 (CREATE)
-
-Error: 400 (BAD REQUEST)
-
-Role: customer
-
-### (c) Allow a user to remove themselves from a tour (only themselves, if they are signed up)
-HTTP DELETE
-
-/users/{userId}/signed-up-tours/{tourId}
-
-Success: 200 (OK)
-
-Error: 404 (NOT FOUND)
-
-Role: customer
-
-### (d) Get all the customers signed up on a particular tour
-HTTP GET
-
-/users/{adminId}/tours/{tourId}/signed-up-customers
-
-Success: 200 (OK)
-
-Error: 404 (NOT FOUND)
-
-Role: admin
+### (a)
+```code
+componentDidMount(){
+        fetch('/tours')
+        .then((response)=>{
+            if (response.ok){
+                return response.json();
+            } else {
+                let info = `Status code: ${response.status}, ${response.statusText}`;
+                console.log(response);
+                return Promise.reject(info);
+            }
+        })
+        .then((tours)=>{
+            this.setState({tours: tours});
+            console.log(tours);
+        })
+        .catch((err)=>{
+            console.log("Something bad: " + err);
+        })
+}
+```
+### (b)
+![2b](images/2b.png)
 
 ## Question 3
 ### (a)

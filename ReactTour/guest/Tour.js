@@ -7,6 +7,26 @@ class Tour extends React.Component {
         //this.state = {modify: false};
     }
 
+componentDidMount(){
+        fetch('/tours')
+        .then((response)=>{
+            if (response.ok){
+                return response.json();
+            } else {
+                let info = `Status code: ${response.status}, ${response.statusText}`;
+                console.log(response);
+                return Promise.reject(info);
+            }
+        })
+        .then((tours)=>{
+            this.setState({tours: tours});
+            console.log(tours);
+        })
+        .catch((err)=>{
+            console.log("Something bad: " + err);
+        })
+}
+
 render() {
     //let mod = this.props.modifyTour;
     let cols = this.props.desiredCols;
