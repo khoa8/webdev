@@ -12,6 +12,21 @@ class AdminTour extends React.Component {
         this.deltour = this.deltour.bind(this);
     }
 
+    addTour(tourId){
+    let tour = {Name: this.state.addName, Date: this.state.addDate};
+    fetch('/tours/', {
+            method: 'POST',
+            header: { "Content-type": "application/json"},
+            body: JSON.stringify(tour)
+        }).then ((response)=>{
+            console.log('Request Status code: ', response.statusText, reponse.status, response.type);
+            return response.json();
+        }).then((tours)=>{
+            that.setState({tours: tours});
+            console.log(tours);
+        });
+    }
+
     addHandler(event){
         this.setState({add: !this.state.add});
         }

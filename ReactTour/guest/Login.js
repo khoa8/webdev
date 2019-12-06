@@ -6,6 +6,23 @@ class Login extends React.Component {
         this.state = {role: "guest", email: "", password: ""}; // We will have "user" and "admin" roles too.
         this.loginHandler = this.loginHandler.bind(this);
     }
+
+    loginClick(){
+        fetch('/login', {
+            method: 'POST',
+            header: {"Content-type": "application/json"},
+            body: JSON.stringify({
+                email: that.state.email,
+                password: that.state.password
+            })
+        }).then (function(response){
+            console.log('Request Status code: ', response.statusText, reponse.status, response.type);
+            return response.json();    
+        }).then(function(userInfo){
+            this.props.login(userInfo.role, userInfo);
+            console.log(userInfo);
+        })
+    }
     
     loginHandler(event){
     this.setState({email: this.element1.value });
