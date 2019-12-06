@@ -27,6 +27,27 @@ class AdminTour extends React.Component {
         });
     }
 
+delTour(tourId) {
+fetch(`/tours/${tourId}`, {
+    method:'DELETE',
+}).then((response)=>{
+    console.log('Request status code:', response.statusText, response.status, response.type);
+    return fetch('/tours');
+}).then((response)=>{
+    if(response.ok) {
+        return response.json();
+    } else {
+        let info =`Status code: ${response.status}, ${response.statusText}`;
+        console.log(response);
+        return Promise.reject(info);
+    }}).then((tours)=>{
+        this.setState({tours: tours});
+        console.log(tours);
+    }).catch((err)=>{
+        console.log("Something bad: " + err);
+    })
+}
+
     addHandler(event){
         this.setState({add: !this.state.add});
         }

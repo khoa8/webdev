@@ -12,6 +12,16 @@ class AdminApp extends React.Component {
         this.homeHandler = this.homeHandler.bind(this);
         this.tourHandler = this.tourHandler.bind(this);
     }
+
+logout() {
+    fetch('/logout').then((response)=>{
+        console.log('Request status code:', response.statusText, response.status, response.type);
+        this.props.login("guest",null);
+    }).catch((response=>{
+        this.props.login("guest",null);
+    });
+}
+
     mnacustomerHandler(event){
     this.setState({showing: "mnacustomer"});
     }

@@ -8,9 +8,20 @@ class CustomerApp extends React.Component {
         this.state = {role: "customer", showing: "home"}; // We will have "user" and "admin" roles too.
         this.tourHandler = this.tourHandler.bind(this);
     }
+
+logout() {
+    fetch('/logout').then((response)=>{
+        console.log('Request status code:', response.statusText, response.status, response.type);
+        this.props.login("guest",null);
+    }).catch((response=>{
+        this.props.login("guest",null);
+    });
+}
+
     tourHandler(event){
     this.setState({showing: "tour"});
     }
+
     render() {
 
     	let im1 = <img src={i1} width="600" height="400" />;
